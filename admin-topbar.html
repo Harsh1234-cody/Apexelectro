@@ -1,0 +1,20 @@
+<header class="admin-topbar">
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <h2 id="adminPageHeaderTitle" style="font-size: 1.25rem; font-weight: 800; color: var(--text-main);">Admin Dashboard</h2>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <button class="btn-secondary" onclick="app.openNewProductModal()">
+              <i data-lucide="plus" style="width: 16px; height: 16px;"></i>
+              Add New Product
+            </button>
+            <button class="btn-primary" onclick="app.switchView('public')">
+              <i data-lucide="external-link" style="width: 16px; height: 16px;"></i>
+              View Public Website
+            </button>
+            <button class="btn-xs-outline" style="color: #dc2626; border-color: #fecaca; background: #fee2e2;" onclick="app.handleAdminLogout()" title="Logout from Admin">
+              <i data-lucide="log-out" style="width: 14px; height: 14px;"></i>
+              Logout
+            </button>
+          </div>
+        </header>

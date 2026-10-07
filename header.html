@@ -1,0 +1,49 @@
+<header class="public-header">
+      <div class="nav-container">
+        <!-- Brand Logo -->
+        <a class="brand-identity" onclick="app.navigatePublic('home')">
+          <div class="brand-logo-icon">
+            <i data-lucide="zap" style="width: 24px; height: 24px; stroke-width: 2.5;"></i>
+          </div>
+          <div class="brand-text">
+            <h1>Apex<span>Electro</span></h1>
+            <div class="brand-subtext">Industrial Electrical Procurement</div>
+          </div>
+        </a>
+
+        <!-- Live Instant Search -->
+        <div class="header-search">
+          <div class="search-input-wrap">
+            <i data-lucide="search" class="search-icon" style="width: 18px; height: 18px;"></i>
+            <input type="text" id="globalSearchInput" placeholder="Search by Product, SKU, Brand (e.g. Polycab, MCB, 2.5 sq.mm)..." autocomplete="off" oninput="app.handleLiveSearch(this.value)">
+          </div>
+          <div class="quick-search-dropdown" id="quickSearchDropdown">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <ul class="nav-menu">
+          <li><a class="nav-link active" id="navHome" onclick="app.navigatePublic('home')">Home</a></li>
+          <li><a class="nav-link" id="navCatalog" onclick="app.navigatePublic('catalog')">Products</a></li>
+          <li><a class="nav-link" id="navCategories" onclick="app.navigatePublic('categories')">Categories</a></li>
+          <li><a class="nav-link" id="navBrands" onclick="app.navigatePublic('brands')">Brands</a></li>
+          <li><a class="nav-link" id="navAbout" onclick="app.navigatePublic('about')">About Us</a></li>
+          <li><a class="nav-link" id="navContact" onclick="app.navigatePublic('contact')">Contact</a></li>
+        </ul>
+
+        <!-- Right Side: Inquiry Cart + Admin Login Lock Button -->
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <button class="inquiry-btn" id="headerInquiryBtn" onclick="app.toggleInquiryDrawer(true)">
+            <i data-lucide="clipboard-list" style="width: 18px; height: 18px;"></i>
+            <span>Inquiry List</span>
+            <span class="inquiry-badge" id="headerInquiryCount">0</span>
+          </button>
+
+          <button class="admin-lock-btn" id="headerAdminLockBtn" onclick="app.requestAdminAccess()" title="Protected Vendor Access">
+            <i data-lucide="lock" style="width: 14px; height: 14px;"></i>
+            <span id="headerAdminBtnText">Vendor Login</span>
+          </button>
+        </div>
+      </div>
+    </header>

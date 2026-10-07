@@ -1,0 +1,60 @@
+/* ===================================================================
+   VARIABLES & DESIGN TOKENS
+   Theme: Luxury Warm White, Beige & Cream (Alabaster, Sandstone, Warm Ivory)
+   =================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Warm White, Beige, and Cream Palette */
+  --bg-deep: #fbf9f5;            /* Warm cream canvas */
+  --bg-surface: #f4ece1;         /* Warm sandstone/beige surface */
+  --bg-card: #ffffff;            /* Crisp warm white card */
+  --bg-card-hover: #fdfbf7;      /* Hover card tone */
+  --bg-elevated: #efe5d5;        /* Elevated beige container */
+  --bg-accent-soft: #f7f1e6;     /* Softest linen / cream accent */
+  --bg-glass: rgba(251, 249, 245, 0.92);
+
+  --border-subtle: #e9decb;      /* Subtle sandstone border */
+  --border-medium: #d8c8b0;      /* Crisp beige border */
+  --border-focus: #b45309;       /* Warm bronze / golden amber */
+
+  --text-main: #1c1917;          /* Rich espresso dark charcoal */
+  --text-muted: #57534e;         /* Warm slate grey */
+  --text-dim: #78716c;           /* Sandstone muted text */
+  --text-inverse: #ffffff;
+
+  /* Accent Colors */
+  --electric-amber: #c2410c;     /* Deep terracotta / industrial amber */
+  --electric-amber-light: #d97706; /* Golden amber */
+  --electric-amber-glow: rgba(194, 65, 12, 0.16);
+
+  --voltage-blue: #1d4ed8;       /* Deep cobalt blue */
+  --voltage-blue-glow: rgba(29, 78, 216, 0.15);
+
+  --emerald-success: #059669;    /* Clean emerald */
+  --emerald-glow: rgba(5, 150, 105, 0.15);
+  --ruby-danger: #dc2626;        /* Vivid crimson */
+  --ruby-glow: rgba(220, 38, 38, 0.15);
+  --warning-orange: #ea580c;
+
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Radii & Shadows */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 2px 6px rgba(41, 37, 36, 0.04);
+  --shadow-md: 0 8px 24px rgba(41, 37, 36, 0.08);
+  --shadow-lg: 0 16px 40px rgba(41, 37, 36, 0.12);
+  --shadow-amber: 0 8px 25px rgba(217, 119, 6, 0.18);
+
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}

@@ -1,0 +1,97 @@
+<section id="publicContactView" style="display: none;" class="main-content">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <h2>Contact Sales & Engineering Support</h2>
+            <p>Submit procurement queries or get in touch with our technical sales division</p>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+          <!-- Contact Form -->
+          <div style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); padding: 2rem; box-shadow: var(--shadow-sm);">
+            <h3 style="color: var(--text-main); font-size: 1.2rem; margin-bottom: 1.25rem;">Direct Message Form</h3>
+            <form id="publicContactForm" onsubmit="app.handleContactSubmit(event)">
+              <div class="form-grid-2col">
+                <div class="form-group">
+                  <label class="form-label" for="cntName">Full Name <span class="req">*</span></label>
+                  <input type="text" id="cntName" class="form-control" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="cntPhone">Phone Number <span class="req">*</span></label>
+                  <input type="tel" id="cntPhone" class="form-control" required placeholder="+91 98765 43210">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="cntEmail">Business Email <span class="req">*</span></label>
+                  <input type="email" id="cntEmail" class="form-control" required placeholder="procurement@company.com">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="cntCompany">Company / Firm Name</label>
+                  <input type="text" id="cntCompany" class="form-control" placeholder="Company / Enterprise name">
+                </div>
+                <div class="form-group full-width">
+                  <label class="form-label" for="cntSubject">Subject <span class="req">*</span></label>
+                  <input type="text" id="cntSubject" class="form-control" required placeholder="e.g. Requirement for Industrial Switchgear & Cables...">
+                </div>
+                <div class="form-group full-width">
+                  <label class="form-label" for="cntMessage">Message / Requirement Details <span class="req">*</span></label>
+                  <textarea id="cntMessage" class="form-control" rows="4" required placeholder="Please provide details regarding required quantities, project location, or technical specifications..."></textarea>
+                </div>
+              </div>
+
+              <button type="submit" class="btn-primary" style="margin-top: 1.25rem; width: 100%; justify-content: center;">
+                <i data-lucide="send" style="width: 16px; height: 16px;"></i>
+                Send Message to Vendor
+              </button>
+            </form>
+          </div>
+
+          <!-- Business Information Box -->
+          <div style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); padding: 2rem; display: flex; flex-direction: column; gap: 1.5rem; box-shadow: var(--shadow-sm);">
+            <h3 style="color: var(--text-main); font-size: 1.2rem;">Registered Office & Warehouse</h3>
+            
+            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+              <i data-lucide="map-pin" style="color: #b45309; width: 22px; height: 22px; flex-shrink: 0; margin-top: 3px;"></i>
+              <div>
+                <strong style="color: var(--text-main);">Registered Address:</strong>
+                <p style="color: var(--text-muted); font-size: 0.875rem;" id="contactAddressText">Plot 42-B, Industrial Area Phase II, MIDC Electronics Zone, Navi Mumbai, MH 400705</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+              <i data-lucide="phone" style="color: #b45309; width: 22px; height: 22px; flex-shrink: 0;"></i>
+              <div>
+                <strong style="color: var(--text-main);">Phone & WhatsApp:</strong>
+                <p style="color: var(--text-muted); font-size: 0.875rem;" id="contactPhoneText">+91 98201 44520</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+              <i data-lucide="mail" style="color: #b45309; width: 22px; height: 22px; flex-shrink: 0;"></i>
+              <div>
+                <strong style="color: var(--text-main);">Email Desk:</strong>
+                <p style="color: var(--text-muted); font-size: 0.875rem;" id="contactEmailText">procurement@apexelectro.in</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+              <i data-lucide="file-check-2" style="color: #b45309; width: 22px; height: 22px; flex-shrink: 0;"></i>
+              <div>
+                <strong style="color: var(--text-main);">GSTIN Identification:</strong>
+                <p style="color: var(--text-muted); font-family: var(--font-mono); font-size: 0.875rem;" id="contactGstinText">27AABCA1234F1Z9</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+              <i data-lucide="clock" style="color: #b45309; width: 22px; height: 22px; flex-shrink: 0;"></i>
+              <div>
+                <strong style="color: var(--text-main);">Working Hours:</strong>
+                <p style="color: var(--text-muted); font-size: 0.875rem;" id="contactHoursText">Mon - Sat: 9:00 AM - 7:30 PM (IST)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Public Footer -->

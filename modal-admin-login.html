@@ -1,0 +1,55 @@
+<dialog class="custom-modal" id="adminLoginModal" style="max-width: 480px;">
+    <div class="modal-content-box">
+      <div class="modal-header" style="background: #fbf8f2;">
+        <h3>
+          <i data-lucide="shield-check" style="color: #b45309; width: 22px; height: 22px;"></i>
+          Vendor Admin Authentication
+        </h3>
+        <button class="close-drawer-btn" onclick="app.closeModal('adminLoginModal')">&times;</button>
+      </div>
+      <div class="modal-body" style="background: #ffffff; padding: 2rem;">
+        <div style="background: #fef3c7; border: 1px solid #fde68a; border-radius: var(--radius-md); padding: 0.85rem 1rem; margin-bottom: 1.5rem; display: flex; align-items: flex-start; gap: 0.6rem;">
+          <i data-lucide="lock" style="color: #b45309; width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px;"></i>
+          <div style="font-size: 0.8rem; color: #92400e; line-height: 1.45;">
+            <strong>Restricted Access:</strong> Only authorized store admins and dispatch managers may access inventory, pricing, and customer inquiries.
+          </div>
+        </div>
+
+        <form id="adminLoginForm" onsubmit="app.handleAdminLogin(event)">
+          <div style="display: flex; flex-direction: column; gap: 1.15rem;">
+            <div class="form-group">
+              <label class="form-label" for="admLoginEmail">Admin Email / Username <span class="req">*</span></label>
+              <input type="text" id="admLoginEmail" class="form-control" required placeholder="Enter admin email or username" autocomplete="username" value="">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="admLoginPassword">Password <span class="req">*</span></label>
+              <div style="position: relative; display: flex; align-items: center;">
+                <input type="password" id="admLoginPassword" class="form-control" style="width: 100%; padding-right: 40px;" required placeholder="Enter password" autocomplete="current-password" value="">
+                <button type="button" onclick="app.togglePasswordVisibility('admLoginPassword')" style="position: absolute; right: 10px; background: none; border: none; color: var(--text-dim); cursor: pointer;" title="Toggle password visibility">
+                  <i data-lucide="eye" style="width: 16px; height: 16px;"></i>
+                </button>
+              </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem;">
+              <label class="filter-checkbox-label">
+                <input type="checkbox" id="admRememberMe">
+                <span>Remember me</span>
+              </label>
+              <a href="javascript:void(0)" onclick="alert('Please contact the IT administrator or store owner to reset your login credentials.')" style="color: #b45309; font-weight: 600; text-decoration: none;">Forgot password?</a>
+            </div>
+
+            <div id="adminLoginError" style="display: none; padding: 0.65rem 0.85rem; background: #fee2e2; border: 1px solid #fecaca; border-radius: var(--radius-sm); font-size: 0.8rem; color: #b91c1c;">
+              Invalid email or password. Please verify your credentials and try again.
+            </div>
+
+            <button type="submit" class="btn-primary" style="justify-content: center; width: 100%; margin-top: 0.5rem; height: 44px;">
+              <i data-lucide="key" style="width: 16px; height: 16px;"></i>
+              Authenticate & Enter Admin Portal
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </dialog>

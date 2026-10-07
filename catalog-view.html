@@ -1,0 +1,85 @@
+<section id="publicCatalogView" style="display: none;" class="main-content">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <h2>
+              <i data-lucide="boxes" style="color: #b45309; width: 28px; height: 28px;"></i>
+              Complete Product Catalog
+            </h2>
+            <p>Filter by category, brand, live stock availability, and dynamic electrical specifications</p>
+          </div>
+        </div>
+
+        <div class="catalog-layout">
+          <!-- Filter Sidebar -->
+          <aside class="catalog-sidebar">
+            <div class="sidebar-header">
+              <h3>
+                <i data-lucide="sliders-horizontal" style="width: 18px; height: 18px; color: #b45309;"></i>
+                Filter Catalog
+              </h3>
+              <button class="reset-filter-btn" onclick="app.resetCatalogFilters()">Reset All</button>
+            </div>
+
+            <!-- Category Filter -->
+            <div class="filter-group">
+              <div class="filter-title">Category</div>
+              <div class="filter-list" id="filterCategoryList">
+                <!-- Rendered via JS -->
+              </div>
+            </div>
+
+            <!-- Brand Filter -->
+            <div class="filter-group">
+              <div class="filter-title">Brand / OEM</div>
+              <div class="filter-list" id="filterBrandList">
+                <!-- Rendered via JS -->
+              </div>
+            </div>
+
+            <!-- Price & Availability Filter -->
+            <div class="filter-group">
+              <div class="filter-title">Stock & Pricing</div>
+              <div class="filter-list">
+                <label class="filter-checkbox-label">
+                  <input type="checkbox" id="filterInStockOnly" onchange="app.applyFilters()">
+                  <span>In Stock Only</span>
+                </label>
+                <label class="filter-checkbox-label">
+                  <input type="checkbox" id="filterPriceVisibleOnly" onchange="app.applyFilters()">
+                  <span>Price Displayed</span>
+                </label>
+                <label class="filter-checkbox-label">
+                  <input type="checkbox" id="filterPriceOnRequestOnly" onchange="app.applyFilters()">
+                  <span>Price on Request (RFQ)</span>
+                </label>
+              </div>
+            </div>
+          </aside>
+
+          <!-- Catalog Main Area -->
+          <div class="catalog-main">
+            <div class="catalog-toolbar">
+              <div class="results-count">
+                Showing <strong id="catalogResultsCount">0</strong> products found
+              </div>
+
+              <div class="toolbar-controls">
+                <label for="catalogSortSelect" style="font-size: 0.825rem; color: var(--text-muted);">Sort by:</label>
+                <select id="catalogSortSelect" class="sort-select" onchange="app.handleSortChange(this.value)">
+                  <option value="featured">Featured / Recommended</option>
+                  <option value="price-asc">Price: Low to High</option>
+                  <option value="price-desc">Price: High to Low</option>
+                  <option value="name-asc">Product Name (A-Z)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid" id="catalogProductsGrid">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW: BRANDS DIRECTORY -->

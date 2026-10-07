@@ -1,0 +1,39 @@
+<!-- TAB 3: PRODUCT MANAGEMENT (Sections 9 - 16, 36) -->
+          <div id="adminTabProducts" style="display: none;">
+            <div class="table-container">
+              <div class="table-toolbar">
+                <div style="display: flex; gap: 1rem; align-items: center; flex: 1;">
+                  <input type="text" id="adminProductSearch" class="form-control" style="max-width: 320px;" placeholder="Search product name, SKU, code..." oninput="app.filterAdminProducts(this.value)">
+                  <select id="adminProductCategoryFilter" class="sort-select" onchange="app.filterAdminProductsByCategory(this.value)">
+                    <option value="ALL">All Categories</option>
+                  </select>
+                </div>
+                <button class="btn-primary" onclick="app.openNewProductModal()">
+                  <i data-lucide="plus" style="width: 16px; height: 16px;"></i>
+                  Create Product
+                </button>
+              </div>
+
+              <div style="overflow-x: auto;">
+                <table class="admin-data-table">
+                  <thead>
+                    <tr>
+                      <th>Image</th>
+                      <th>Product Name</th>
+                      <th>Category</th>
+                      <th>Brand</th>
+                      <th>Primary SKU</th>
+                      <th>Price / Unit</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminProductsTableBody">
+                    <!-- Populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 4: INVENTORY MANAGEMENT

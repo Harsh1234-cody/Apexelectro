@@ -1,0 +1,160 @@
+<section id="publicHomeView">
+        
+        <!-- Hero Section -->
+        <div class="hero-section">
+          <div class="hero-grid-bg"></div>
+          <div class="hero-glow-1"></div>
+          <div class="hero-glow-2"></div>
+
+          <div class="hero-container">
+            <div class="hero-content">
+              <div class="hero-eyebrow">
+                <i data-lucide="shield-check" style="width: 14px; height: 14px;"></i>
+                Authorized OEM Electrical Supplies Distributor
+              </div>
+              <h1 class="hero-title">
+                Reliable Electrical Supplies <br>
+                <span class="gradient-text">for Every Industrial Project</span>
+              </h1>
+              <p class="hero-desc">
+                Streamline commercial electrical procurement. Select exact product specifications and variants, generate multi-product RFQs, and receive certified bulk pricing quotations directly from certified vendors.
+              </p>
+
+              <div class="hero-value-props">
+                <div class="prop-item">
+                  <i data-lucide="check-circle" class="prop-icon" style="width: 18px; height: 18px;"></i>
+                  <span>100% Genuine OEM Certified Stock</span>
+                </div>
+                <div class="prop-item">
+                  <i data-lucide="check-circle" class="prop-icon" style="width: 18px; height: 18px;"></i>
+                  <span>Transparent Quantity Slab Pricing</span>
+                </div>
+                <div class="prop-item">
+                  <i data-lucide="check-circle" class="prop-icon" style="width: 18px; height: 18px;"></i>
+                  <span>Direct Site Delivery & Drum Packing</span>
+                </div>
+                <div class="prop-item">
+                  <i data-lucide="check-circle" class="prop-icon" style="width: 18px; height: 18px;"></i>
+                  <span>Rapid 2-Hour Quotation Turnaround</span>
+                </div>
+              </div>
+
+              <div class="hero-cta-group">
+                <button class="btn-primary" onclick="app.navigatePublic('catalog')">
+                  <i data-lucide="layout-grid" style="width: 18px; height: 18px;"></i>
+                  Explore Products
+                </button>
+                <button class="btn-secondary" onclick="app.toggleInquiryDrawer(true)">
+                  <i data-lucide="file-text" style="width: 18px; height: 18px;"></i>
+                  Request a Quote
+                </button>
+              </div>
+            </div>
+
+            <!-- B2B Workflow Interactive Card -->
+            <div class="hero-workflow-card">
+              <div class="workflow-header">
+                <h3>
+                  <i data-lucide="workflow" style="color: #b45309; width: 20px; height: 20px;"></i>
+                  B2B Procurement Workflow
+                </h3>
+                <span class="workflow-badge">Inquiry-First Model</span>
+              </div>
+
+              <div class="workflow-steps">
+                <div class="wf-step">
+                  <div class="wf-step-num">1</div>
+                  <div class="wf-step-info">
+                    <h4>Browse & Filter Products</h4>
+                    <p>Search electrical items by technical specs, poles, sq.mm, or brand.</p>
+                  </div>
+                </div>
+
+                <div class="wf-step">
+                  <div class="wf-step-num">2</div>
+                  <div class="wf-step-info">
+                    <h4>Select Required Variant & Quantity</h4>
+                    <p>Pick exact rated current, coil voltage, or conductor cross-section.</p>
+                  </div>
+                </div>
+
+                <div class="wf-step">
+                  <div class="wf-step-num">3</div>
+                  <div class="wf-step-info">
+                    <h4>Add Multiple Items to Inquiry Cart</h4>
+                    <p>Combine cables, switchgear, and panels into a single requirement list.</p>
+                  </div>
+                </div>
+
+                <div class="wf-step">
+                  <div class="wf-step-num">4</div>
+                  <div class="wf-step-info">
+                    <h4>Submit Combined RFQ</h4>
+                    <p>Get an instant Inquiry Reference Number (RFQ) without paying online.</p>
+                  </div>
+                </div>
+
+                <div class="wf-step">
+                  <div class="wf-step-num">5</div>
+                  <div class="wf-step-info">
+                    <h4>Receive Official GST Quotation</h4>
+                    <p>Vendor reviews stock and issues formal quotation with tax & freight.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="wf-rule-banner">
+                <i data-lucide="info" style="width: 16px; height: 16px; flex-shrink: 0;"></i>
+                <span><strong>No Retail Checkout:</strong> Designed strictly for enterprise B2B billings and tenders.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Brands Ticker Strip -->
+        <section class="brands-strip">
+          <div class="strip-inner">
+            <span class="strip-label">Authorized OEM Brands:</span>
+            <div class="brands-pill-list" id="heroBrandsPillList">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Categories Showcase Section -->
+        <section class="main-content">
+          <div class="section-header">
+            <div class="section-title-wrap">
+              <h2>
+                <i data-lucide="layers" style="color: #b45309; width: 28px; height: 28px;"></i>
+                Product Categories
+              </h2>
+              <p>Explore comprehensive industrial electrical inventory manageable via vendor portal</p>
+            </div>
+            <button class="btn-secondary" onclick="app.navigatePublic('catalog')">
+              View Full Catalog →
+            </button>
+          </div>
+
+          <div class="category-grid" id="homeCategoryGrid">
+            <!-- Rendered via JS -->
+          </div>
+
+          <!-- Featured Products Section -->
+          <div class="section-header">
+            <div class="section-title-wrap">
+              <h2>
+                <i data-lucide="sparkles" style="color: #b45309; width: 28px; height: 28px;"></i>
+                Featured Industrial Products
+              </h2>
+              <p>High-demand cables, circuit breakers, and distribution components ready for immediate dispatch</p>
+            </div>
+          </div>
+
+          <div class="products-grid" id="homeFeaturedProductsGrid">
+            <!-- Rendered via JS -->
+          </div>
+        </section>
+      </section>
+
+      <!-- VIEW: FULL PRODUCTS CATALOG & EXPLORER -->

@@ -1,0 +1,26 @@
+<div class="inquiry-drawer-overlay" id="inquiryDrawerOverlay" onclick="app.handleDrawerOverlayClick(event)">
+    <div class="inquiry-drawer" id="inquiryDrawer">
+      <div class="drawer-header">
+        <h3>
+          <i data-lucide="clipboard-list" style="color: #b45309; width: 20px; height: 20px;"></i>
+          Inquiry List (<span id="drawerCountText">0</span> items)
+        </h3>
+        <button class="close-drawer-btn" onclick="app.toggleInquiryDrawer(false)">&times;</button>
+      </div>
+
+      <div class="drawer-body" id="drawerItemsList">
+        <!-- Rendered via JS -->
+      </div>
+
+      <div class="drawer-footer">
+        <div class="drawer-summary-row">
+          <span>Total Products Added:</span>
+          <strong id="drawerSummaryCount">0 items</strong>
+        </div>
+        <button class="btn-proceed-inquiry" id="drawerProceedBtn" onclick="app.openInquirySubmitModal()">
+          <span>Proceed to Submit Inquiry (RFQ)</span>
+          <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+        </button>
+      </div>
+    </div>
+  </div>

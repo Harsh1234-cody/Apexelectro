@@ -1,0 +1,64 @@
+<!-- TAB 4: INVENTORY MANAGEMENT & STOCK ADJUSTMENTS (Sections 17 - 19, 39) -->
+          <div id="adminTabInventory" style="display: none;">
+            <div class="table-container">
+              <div class="table-toolbar">
+                <div style="display: flex; gap: 1rem; align-items: center; flex: 1;">
+                  <h3 style="font-size: 1rem; color: var(--text-main); font-weight: 800;">Live Variant Stock Ledger</h3>
+                  <span style="font-size: 0.775rem; color: var(--text-dim);">Available = Current Stock - Reserved Stock</span>
+                </div>
+                <button class="btn-secondary" onclick="app.openStockAdjustmentModal()">
+                  <i data-lucide="sliders" style="width: 16px; height: 16px;"></i>
+                  + Stock Adjustment (Audit)
+                </button>
+              </div>
+
+              <div style="overflow-x: auto;">
+                <table class="admin-data-table">
+                  <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th>Variant</th>
+                      <th>SKU</th>
+                      <th>Current Stock</th>
+                      <th>Reserved</th>
+                      <th>Available Stock</th>
+                      <th>Reorder Level</th>
+                      <th>Stock Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminInventoryTableBody">
+                    <!-- Populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Stock Adjustment History Audit Log (Section 19) -->
+            <div class="table-container">
+              <div class="table-toolbar">
+                <h3 style="font-size: 0.95rem; color: var(--text-main); font-weight: 800;">Stock Adjustment Audit Log (Audit History)</h3>
+              </div>
+              <div style="overflow-x: auto;">
+                <table class="admin-data-table">
+                  <thead>
+                    <tr>
+                      <th>Date / Time</th>
+                      <th>Product & Variant</th>
+                      <th>SKU</th>
+                      <th>Previous</th>
+                      <th>Delta</th>
+                      <th>New Stock</th>
+                      <th>Reason / Note</th>
+                      <th>Admin User</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminStockAuditTableBody">
+                    <!-- Populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 5: QUOTATIONS MANAGER

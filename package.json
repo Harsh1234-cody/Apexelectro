@@ -1,0 +1,29 @@
+{
+  "name": "apex-electro-b2b-platform",
+  "version": "1.0.0",
+  "description": "Industrial Electrical Supplies B2B Procurement Platform & Vendor Management System",
+  "main": "index.html",
+  "scripts": {
+    "build": "node scripts/build-html.js",
+    "watch": "node scripts/watch.js",
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "b2b",
+    "electrical",
+    "procurement",
+    "rfq",
+    "supabase",
+    "vercel",
+    "brevo"
+  ],
+  "author": "Apex Electro Supplies & Switchgear Pvt. Ltd.",
+  "license": "ISC",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.1"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.7"
+  }
+}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apex Electro Supplies & Switchgear | B2B Electrical Procurement Platform</title>
+  <meta name="description" content="Authorized distributor of industrial electrical supplies, Polycab cables, Schneider MCBs, Havells switchgear, ABB automation, and commercial lighting. Direct B2B quotations.">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Lucide icons via unpkg for lightweight vector rendering -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- ===================================================================
+       1. GLOBAL QUICK ROLE SWITCHER BAR (Protected by Admin Auth)
+       Component: components/layout/switcher-bar.html
+       =================================================================== -->
+  {{include:components/layout/switcher-bar.html}}
+
+  <!-- ===================================================================
+       2. PUBLIC STOREFRONT (CUSTOMER-FACING VIEWS)
+       =================================================================== -->
+  <div id="publicViewContainer">
+    <!-- Header: components/layout/header.html -->
+    {{include:components/layout/header.html}}
+
+    <main>
+      <!-- Home: components/storefront/home-view.html -->
+      {{include:components/storefront/home-view.html}}
+
+      <!-- Catalog: components/storefront/catalog-view.html -->
+      {{include:components/storefront/catalog-view.html}}
+
+      <!-- Brands: components/storefront/brands-view.html -->
+      {{include:components/storefront/brands-view.html}}
+
+      <!-- About Us: components/storefront/about-view.html -->
+      {{include:components/storefront/about-view.html}}
+
+      <!-- Contact: components/storefront/contact-view.html -->
+      {{include:components/storefront/contact-view.html}}
+    </main>
+
+    <!-- Footer: components/layout/footer.html -->
+    {{include:components/layout/footer.html}}
+  </div>
+
+  <!-- ===================================================================
+       3. SLIDE-OUT INQUIRY DRAWER / INQUIRY CART (Sections 24-25)
+       Component: components/drawer/inquiry-drawer.html
+       =================================================================== -->
+  {{include:components/drawer/inquiry-drawer.html}}
+
+  <!-- ===================================================================
+       4. CUSTOMER MODALS (ADMIN LOGIN, PRODUCT DETAIL, RFQ CHECKOUT, SUCCESS, QUOTATION)
+       =================================================================== -->
+  <!-- Admin Login Modal: components/modals/modal-admin-login.html -->
+  {{include:components/modals/modal-admin-login.html}}
+
+  <!-- Product Detail Modal: components/modals/modal-product-detail.html -->
+  {{include:components/modals/modal-product-detail.html}}
+
+  <!-- RFQ Checkout Modal: components/modals/modal-inquiry-submit.html -->
+  {{include:components/modals/modal-inquiry-submit.html}}
+
+  <!-- Inquiry Success Token Modal: components/modals/modal-inquiry-success.html -->
+  {{include:components/modals/modal-inquiry-success.html}}
+
+  <!-- Quotation View Modal: components/modals/modal-quotation-view.html -->
+  {{include:components/modals/modal-quotation-view.html}}
+
+  <!-- ===================================================================
+       5. VENDOR ADMIN PORTAL
+       =================================================================== -->
+  <div id="adminViewContainer" style="display: none;">
+    <div class="admin-layout">
+      <!-- Admin Sidebar: components/admin/admin-sidebar.html -->
+      {{include:components/admin/admin-sidebar.html}}
+
+      <!-- Admin Main Content Area -->
+      <div class="admin-main">
+        <!-- Admin Topbar: components/admin/admin-topbar.html -->
+        {{include:components/admin/admin-topbar.html}}
+
+        <!-- Admin Scrollable Content Container -->
+        <div class="admin-content-inner">
+          <!-- TAB 1: Dashboard (components/admin/tab-dashboard.html) -->
+          {{include:components/admin/tab-dashboard.html}}
+
+          <!-- TAB 2: Inquiries RFQ (components/admin/tab-inquiries.html) -->
+          {{include:components/admin/tab-inquiries.html}}
+
+          <!-- TAB 3: Products (components/admin/tab-products.html) -->
+          {{include:components/admin/tab-products.html}}
+
+          <!-- TAB 4: Inventory & Stock Ledger (components/admin/tab-inventory.html) -->
+          {{include:components/admin/tab-inventory.html}}
+
+          <!-- TAB 5: Quotations (components/admin/tab-quotations.html) -->
+          {{include:components/admin/tab-quotations.html}}
+
+          <!-- TAB 6: Categories (components/admin/tab-categories.html) -->
+          {{include:components/admin/tab-categories.html}}
+
+          <!-- TAB 7: Brands (components/admin/tab-brands.html) -->
+          {{include:components/admin/tab-brands.html}}
+
+          <!-- TAB 8: Contact Inbound Submissions (components/admin/tab-contacts.html) -->
+          {{include:components/admin/tab-contacts.html}}
+
+          <!-- TAB 9: Business Profile & Cloud Services (components/admin/tab-profile.html) -->
+          {{include:components/admin/tab-profile.html}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       6. ADMIN ACTION MODALS
+       =================================================================== -->
+  <!-- Admin Stock Adjustment Modal: components/modals/modal-admin-stock.html -->
+  {{include:components/modals/modal-admin-stock.html}}
+
+  <!-- Admin Product Create/Edit Modal: components/modals/modal-admin-product.html -->
+  {{include:components/modals/modal-admin-product.html}}
+
+  <!-- Admin Inquiry Detail Modal: components/modals/modal-admin-inquiry-detail.html -->
+  {{include:components/modals/modal-admin-inquiry-detail.html}}
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ===================================================================
+       MODULAR JAVASCRIPT ARCHITECTURE
+       =================================================================== -->
+  <!-- 1. Master Seed Data -->
+  <script src="js/data.js"></script>
+
+  <!-- 2. Utilities -->
+  <script src="js/utils/formatters.js"></script>
+  <script src="js/utils/dom.js"></script>
+
+  <!-- 3. Central Application State Store -->
+  <script src="js/state.js"></script>
+
+  <!-- 4. Feature Modules -->
+  <script src="js/modules/auth.js"></script>
+  <script src="js/modules/catalog.js"></script>
+  <script src="js/modules/productDetail.js"></script>
+  <script src="js/modules/inquiryCart.js"></script>
+  <script src="js/modules/inquirySubmit.js"></script>
+  <script src="js/modules/quotation.js"></script>
+  <script src="js/modules/adminProducts.js"></script>
+  <script src="js/modules/adminInventory.js"></script>
+  <script src="js/modules/adminInquiries.js"></script>
+  <script src="js/modules/contact.js"></script>
+  <script src="js/modules/cloudServices.js"></script>
+
+  <!-- 5. Root Orchestrator -->
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!-- TAB 6: CATEGORIES & SUBCATEGORIES (Sections 7, 37) -->
+          <div id="adminTabCategories" style="display: none;">
+            <div class="table-container">
+              <div class="table-toolbar">
+                <h3 style="font-size: 1rem; color: var(--text-main); font-weight: 800;">Categories & Subcategories</h3>
+                <button class="btn-primary" onclick="app.openAddCategoryModal()">+ Add Category</button>
+              </div>
+              <div style="overflow-x: auto;">
+                <table class="admin-data-table">
+                  <thead>
+                    <tr>
+                      <th>Order</th>
+                      <th>Category Name</th>
+                      <th>Subcategories</th>
+                      <th>Description</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminCategoriesTableBody">
+                    <!-- Populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 7: BRANDS

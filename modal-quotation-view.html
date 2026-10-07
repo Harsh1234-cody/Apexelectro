@@ -1,0 +1,27 @@
+<dialog class="custom-modal" id="quotationModal" style="max-width: 900px;">
+    <div class="modal-content-box">
+      <div class="modal-header">
+        <h3>
+          <i data-lucide="file-spreadsheet" style="color: #b45309; width: 22px; height: 22px;"></i>
+          B2B Formal Quotation Viewer & Generator
+        </h3>
+        <button class="close-drawer-btn" onclick="app.closeModal('quotationModal')">&times;</button>
+      </div>
+      <div class="modal-body" id="quotationSheetBody">
+        <!-- Rendered via JS -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" onclick="window.print()">
+          <i data-lucide="printer" style="width: 16px; height: 16px;"></i>
+          Print / Save as PDF
+        </button>
+        <button class="btn-primary" id="btnSendQuoteBrevo" onclick="app.sendQuotationViaBrevo()" style="background: linear-gradient(135deg, #059669 0%, #047857 100%);">
+          <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
+          Send Quote via Brevo Email
+        </button>
+        <button class="btn-secondary" onclick="app.closeModal('quotationModal')">
+          Done
+        </button>
+      </div>
+    </div>
+  </dialog>

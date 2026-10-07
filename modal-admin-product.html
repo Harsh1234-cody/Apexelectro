@@ -1,0 +1,125 @@
+<dialog class="custom-modal" id="adminProductModal" style="max-width: 880px;">
+    <div class="modal-content-box">
+      <div class="modal-header">
+        <h3 id="adminProductModalTitle">Create Electrical Product</h3>
+        <button class="close-drawer-btn" onclick="app.closeModal('adminProductModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="adminProductForm" onsubmit="app.handleProductSave(event)">
+          <input type="hidden" id="editProductId">
+
+          <h4 style="color: #b45309; font-size: 0.9rem; margin-bottom: 0.75rem;">1. Basic Identification</h4>
+          <div class="form-grid-2col" style="margin-bottom: 1.5rem;">
+            <div class="form-group full-width">
+              <label class="form-label">Product Name <span class="req">*</span></label>
+              <input type="text" id="pName" class="form-control" required placeholder="e.g. Polycab Super Flexible Multi-Strand Copper Wire">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Category <span class="req">*</span></label>
+              <select id="pCategory" class="form-control" required onchange="app.handleCategorySelectChange(this.value)">
+                <!-- Populated via JS -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Subcategory</label>
+              <select id="pSubcategory" class="form-control">
+                <!-- Populated via JS -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Brand <span class="req">*</span></label>
+              <select id="pBrand" class="form-control" required>
+                <!-- Populated via JS -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Base SKU Code <span class="req">*</span></label>
+              <input type="text" id="pSku" class="form-control" required placeholder="POL-CAB-FLX-1100V">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Model Number</label>
+              <input type="text" id="pModel" class="form-control" placeholder="Optima-FRLS-2026">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Manufacturer Part No. (MPN)</label>
+              <input type="text" id="pMpn" class="form-control" placeholder="PC-90M-FLX">
+            </div>
+          </div>
+
+          <h4 style="color: #b45309; font-size: 0.9rem; margin-bottom: 0.75rem;">2. Pricing & Unit Model (Section 11, 12, 13)</h4>
+          <div class="form-grid-2col" style="margin-bottom: 1.5rem;">
+            <div class="form-group">
+              <label class="form-label">Pricing Type</label>
+              <select id="pPriceType" class="form-control" onchange="app.handlePriceTypeChange(this.value)">
+                <option value="Per Unit">Price Per Unit (e.g. ₹/Meter)</option>
+                <option value="Fixed Price">Fixed Price (e.g. ₹/Piece)</option>
+                <option value="Price on Request">Price on Request (Show RFQ button)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Unit of Measure (UOM)</label>
+              <select id="pUnit" class="form-control">
+                <option value="Meter">Meter</option>
+                <option value="Piece">Piece</option>
+                <option value="Box">Box</option>
+                <option value="Roll">Roll</option>
+                <option value="Coil">Coil</option>
+                <option value="Pack">Pack</option>
+                <option value="Set">Set</option>
+                <option value="Bundle">Bundle</option>
+              </select>
+            </div>
+            <div class="form-group" id="pBasePriceGroup">
+              <label class="form-label">Base Unit Price (₹)</label>
+              <input type="number" id="pBasePrice" class="form-control" step="0.01" placeholder="e.g. 28.50">
+            </div>
+            <div class="form-group" style="justify-content: center;">
+              <label class="filter-checkbox-label" style="margin-top: 1.5rem;">
+                <input type="checkbox" id="pShowPrice" checked>
+                <span><strong>Show Price Publicly</strong> (If unchecked, displays "Price on Request")</span>
+              </label>
+            </div>
+          </div>
+
+          <h4 style="color: #b45309; font-size: 0.9rem; margin-bottom: 0.75rem;">3. Dynamic Specifications Builder (Section 15)</h4>
+          <div style="background: #fdfaf5; border: 1px solid var(--border-medium); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.5rem;">
+            <div style="font-size: 0.75rem; color: var(--text-dim); margin-bottom: 0.5rem;">Add any custom electrical technical parameters:</div>
+            <div id="dynamicSpecsList" style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0.75rem;">
+              <!-- Dynamic rows added via JS -->
+            </div>
+            <button type="button" class="btn-xs-outline" onclick="app.addDynamicSpecRow()">+ Add Specification Row</button>
+          </div>
+
+          <h4 style="color: #b45309; font-size: 0.9rem; margin-bottom: 0.75rem;">4. Product Variants (Section 14)</h4>
+          <div style="background: #fdfaf5; border: 1px solid var(--border-medium); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.5rem;">
+            <div style="font-size: 0.75rem; color: var(--text-dim); margin-bottom: 0.5rem;">Define size, poles, wattage variants with independent SKU, price, and stock:</div>
+            <div id="dynamicVariantsList" style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0.75rem;">
+              <!-- Dynamic variant rows added via JS -->
+            </div>
+            <button type="button" class="btn-xs-outline" onclick="app.addDynamicVariantRow()">+ Add Variant Row</button>
+          </div>
+
+          <h4 style="color: #b45309; font-size: 0.9rem; margin-bottom: 0.75rem;">5. Description & Media</h4>
+          <div class="form-grid-2col" style="margin-bottom: 1.5rem;">
+            <div class="form-group full-width">
+              <label class="form-label">Short Description</label>
+              <input type="text" id="pShortDesc" class="form-control" placeholder="1-sentence highlight for listing cards">
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label">Full Technical Description</label>
+              <textarea id="pFullDesc" class="form-control" rows="3" placeholder="Comprehensive specifications, safety compliance, and applications"></textarea>
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label">Primary Image URL</label>
+              <input type="url" id="pImage" class="form-control" placeholder="https://images.unsplash.com/...">
+            </div>
+          </div>
+
+          <div class="modal-footer" style="padding-left: 0; padding-right: 0; background: transparent;">
+            <button type="button" class="btn-secondary" onclick="app.closeModal('adminProductModal')">Cancel</button>
+            <button type="submit" class="btn-primary">Save Product to Database</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </dialog>

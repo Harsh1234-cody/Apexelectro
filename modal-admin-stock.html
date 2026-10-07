@@ -1,0 +1,52 @@
+<dialog class="custom-modal" id="adminStockModal">
+    <div class="modal-content-box">
+      <div class="modal-header">
+        <h3>
+          <i data-lucide="sliders" style="color: #b45309; width: 22px; height: 22px;"></i>
+          Adjust Inventory Stock (Audit Controlled)
+        </h3>
+        <button class="close-drawer-btn" onclick="app.closeModal('adminStockModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="stockAdjustmentForm" onsubmit="app.handleStockAdjustmentSubmit(event)">
+          <div class="form-grid-2col">
+            <div class="form-group full-width">
+              <label class="form-label" for="stkSelectVariant">Select Product Variant <span class="req">*</span></label>
+              <select id="stkSelectVariant" class="form-control" required onchange="app.handleStockVariantChange(this.value)">
+                <!-- Populated via JS -->
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Current Stock Level</label>
+              <input type="text" id="stkCurrentStockDisplay" class="form-control" readonly style="background: #f4eee5; color: var(--text-main); font-weight: 700;">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="stkAdjustmentType">Adjustment Action <span class="req">*</span></label>
+              <select id="stkAdjustmentType" class="form-control" required>
+                <option value="ADD">Add Stock (+ Incoming Goods / PO)</option>
+                <option value="REDUCE">Reduce Stock (- Dispatch / Shrinkage)</option>
+                <option value="SET">Set Exact Physical Count</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="stkQty">Quantity <span class="req">*</span></label>
+              <input type="number" id="stkQty" class="form-control" required min="1" placeholder="Quantity value">
+            </div>
+
+            <div class="form-group full-width">
+              <label class="form-label" for="stkReason">Reason for Adjustment <span class="req">*</span></label>
+              <input type="text" id="stkReason" class="form-control" required placeholder="e.g. New factory delivery LR-4421, physical audit correction, damaged in transit">
+            </div>
+          </div>
+
+          <div class="modal-footer" style="padding-left: 0; padding-right: 0; background: transparent;">
+            <button type="button" class="btn-secondary" onclick="app.closeModal('adminStockModal')">Cancel</button>
+            <button type="submit" class="btn-primary">Record Adjustment & Log Audit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </dialog>

@@ -1,0 +1,108 @@
+<!-- TAB 1: ADMIN DASHBOARD (Sections 34 - 35) -->
+          <div id="adminTabDashboard">
+            <!-- KPI Cards Grid -->
+            <div class="kpi-grid">
+              <div class="kpi-card amber">
+                <span class="kpi-label">Total Inquiries</span>
+                <span class="kpi-value" id="kpiTotalInquiries">0</span>
+                <span class="kpi-meta"><strong id="kpiNewInquiries" style="color: #b45309;">0 New</strong> requiring response</span>
+              </div>
+              <div class="kpi-card blue">
+                <span class="kpi-label">Total Products</span>
+                <span class="kpi-value" id="kpiTotalProducts">0</span>
+                <span class="kpi-meta"><span id="kpiActiveProducts">0</span> active in catalog</span>
+              </div>
+              <div class="kpi-card red">
+                <span class="kpi-label">Low Stock Alerts</span>
+                <span class="kpi-value" id="kpiLowStock">0</span>
+                <span class="kpi-meta" id="kpiOutOfStock">0 out of stock</span>
+              </div>
+              <div class="kpi-card green">
+                <span class="kpi-label">Categories / Brands</span>
+                <span class="kpi-value" id="kpiCatBrandCount">0 / 0</span>
+                <span class="kpi-meta">Configurable taxonomy</span>
+              </div>
+            </div>
+
+            <!-- Recent Inquiries Section -->
+            <div class="table-container">
+              <div class="table-toolbar">
+                <h3 style="font-size: 1rem; color: var(--text-main); font-weight: 800;">Recent Inquiries / RFQs</h3>
+                <button class="btn-xs-outline" onclick="app.switchAdminTab('inquiries')">View All Inquiries →</button>
+              </div>
+              <div style="overflow-x: auto;">
+                <table class="admin-data-table">
+                  <thead>
+                    <tr>
+                      <th>Inquiry No.</th>
+                      <th>Customer & Company</th>
+                      <th>Phone & Email</th>
+                      <th>Products</th>
+                      <th>Date</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminDashboardRecentInquiries">
+                    <!-- Populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Low Stock Warnings & Recent Contacts Split -->
+            <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 1.5rem;">
+              <!-- Low Stock Box -->
+              <div class="table-container">
+                <div class="table-toolbar">
+                  <h3 style="font-size: 0.95rem; color: var(--text-main); font-weight: 800; display: flex; align-items: center; gap: 0.5rem;">
+                    <i data-lucide="alert-triangle" style="color: #b45309; width: 16px; height: 16px;"></i>
+                    Low Stock & Reorder Watchlist
+                  </h3>
+                </div>
+                <div style="overflow-x: auto;">
+                  <table class="admin-data-table">
+                    <thead>
+                      <tr>
+                        <th>Product & Variant</th>
+                        <th>SKU</th>
+                        <th>Available</th>
+                        <th>Reorder Level</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="adminDashboardLowStockTable">
+                      <!-- Populated via JS -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Recent Contact Submissions -->
+              <div class="table-container">
+                <div class="table-toolbar">
+                  <h3 style="font-size: 0.95rem; color: var(--text-main); font-weight: 800; display: flex; align-items: center; gap: 0.5rem;">
+                    <i data-lucide="mail" style="color: #2563eb; width: 16px; height: 16px;"></i>
+                    Recent Contact Submissions
+                  </h3>
+                </div>
+                <div style="overflow-x: auto;">
+                  <table class="admin-data-table">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Subject</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody id="adminDashboardRecentContacts">
+                      <!-- Populated via JS -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 2: INQUIRIES MANAGEMENT

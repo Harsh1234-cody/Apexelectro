@@ -1,0 +1,28 @@
+<!-- TAB 7: BRANDS (Sections 8, 38) -->
+          <div id="adminTabBrands" style="display: none;">
+            <div class="table-container">
+              <div class="table-toolbar">
+                <h3 style="font-size: 1rem; color: var(--text-main); font-weight: 800;">Brand Management</h3>
+                <button class="btn-primary" onclick="app.openAddBrandModal()">+ Add Brand</button>
+              </div>
+              <div style="overflow-x: auto;">
+                <table class="admin-data-table">
+                  <thead>
+                    <tr>
+                      <th>Brand Name</th>
+                      <th>Origin</th>
+                      <th>Description</th>
+                      <th>Products</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminBrandsTableBody">
+                    <!-- Populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 8: CONTACT SUBMISSIONS

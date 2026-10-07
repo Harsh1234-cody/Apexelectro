@@ -1,0 +1,85 @@
+<aside class="admin-sidebar">
+        <div class="admin-brand">
+          <div class="brand-logo-icon" style="width: 32px; height: 32px; background: linear-gradient(135deg, #d97706 0%, #b45309 100%);">
+            <i data-lucide="zap" style="width: 18px; height: 18px;"></i>
+          </div>
+          <div>
+            <h2 style="font-size: 1rem; color: #ffffff; font-weight: 800;">Apex<span style="color: #fbbf24;">Admin</span></h2>
+            <div style="font-size: 0.65rem; color: #a8a29e;">Vendor Control Suite</div>
+          </div>
+          <span class="admin-badge">V1</span>
+        </div>
+
+        <ul class="admin-menu">
+          <li>
+            <a class="admin-nav-item active" id="admNavDashboard" onclick="app.switchAdminTab('dashboard')">
+              <i data-lucide="layout-dashboard" style="width: 18px; height: 18px;"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a class="admin-nav-item" id="admNavInquiries" onclick="app.switchAdminTab('inquiries')">
+              <i data-lucide="inbox" style="width: 18px; height: 18px;"></i>
+              <span>Inquiries (RFQs)</span>
+              <span class="nav-counter" id="admInquiriesBadge">0</span>
+            </a>
+          </li>
+          <li>
+            <a class="admin-nav-item" id="admNavProducts" onclick="app.switchAdminTab('products')">
+              <i data-lucide="package" style="width: 18px; height: 18px;"></i>
+              <span>Products Catalog</span>
+              <span class="nav-counter" id="admProductsBadge">0</span>
+            </a>
+          </li>
+          <li>
+            <a class="admin-nav-item" id="admNavInventory" onclick="app.switchAdminTab('inventory')">
+              <i data-lucide="boxes" style="width: 18px; height: 18px;"></i>
+              <span>Inventory & Stock</span>
+              <span class="nav-counter" id="admLowStockBadge" style="background: #d97706; color: #ffffff;">0</span>
+            </a>
+          </li>
+          <li>
+            <a class="admin-nav-item" id="admNavQuotations" onclick="app.switchAdminTab('quotations')">
+              <i data-lucide="file-spreadsheet" style="width: 18px; height: 18px;"></i>
+              <span>Quotations</span>
+            </a>
+          </li>
+          <li>
+            <a class="admin-nav-item" id="admNavCategories" onclick="app.switchAdminTab('categories')">
+              <i data-lucide="layers" style="width: 18px; height: 18px;"></i>
+              <span>Categories</span>
+            </a>
+          </li>
+          <li>
+            <a class="admin-nav-item" id="admNavBrands" onclick="app.switchAdminTab('brands')">
+              <i data-lucide="award" style="width: 18px; height: 18px;"></i>
+              <span>Brands</span>
+            </a>
+          </li>
+          <li>
+            <a class="admin-nav-item" id="admNavContacts" onclick="app.switchAdminTab('contacts')">
+              <i data-lucide="message-square" style="width: 18px; height: 18px;"></i>
+              <span>Contact Messages</span>
+              <span class="nav-counter" id="admContactsBadge">0</span>
+            </a>
+          </li>
+          <li>
+            <a class="admin-nav-item" id="admNavProfile" onclick="app.switchAdminTab('profile')">
+              <i data-lucide="settings" style="width: 18px; height: 18px;"></i>
+              <span>Business Settings</span>
+            </a>
+          </li>
+        </ul>
+
+        <div style="margin-top: auto; padding: 1rem; background: #292524; border-radius: var(--radius-md); border: 1px solid #44403c;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+            <div style="font-size: 0.775rem; color: #f5f5f4; font-weight: 700;" id="adminSidebarName">Harsh</div>
+            <span style="font-size: 0.65rem; color: #fbbf24; background: rgba(251, 191, 36, 0.2); padding: 0.1rem 0.35rem; border-radius: 4px;">Store Admin</span>
+          </div>
+          <div style="font-size: 0.7rem; color: #a8a29e; margin-bottom: 0.75rem;" id="adminSidebarEmail">admin@apexelectro.in</div>
+          <button class="btn-xs-outline" style="width: 100%; color: #f87171; border-color: #7f1d1d; background: #450a0a; justify-content: center; display: flex; align-items: center; gap: 0.35rem;" onclick="app.handleAdminLogout()">
+            <i data-lucide="log-out" style="width: 12px; height: 12px;"></i>
+            Sign Out of Admin
+          </button>
+        </div>
+      </aside>

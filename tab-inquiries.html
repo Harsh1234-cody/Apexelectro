@@ -1,0 +1,42 @@
+<!-- TAB 2: INQUIRIES MANAGEMENT (Sections 28 - 30) -->
+          <div id="adminTabInquiries" style="display: none;">
+            <div class="table-container">
+              <div class="table-toolbar">
+                <div style="display: flex; gap: 1rem; align-items: center; flex: 1;">
+                  <input type="text" id="adminInquirySearch" class="form-control" style="max-width: 300px;" placeholder="Search inquiry #, customer, firm..." oninput="app.filterAdminInquiries(this.value)">
+                  <select id="adminInquiryStatusFilter" class="sort-select" onchange="app.filterAdminInquiriesByStatus(this.value)">
+                    <option value="ALL">All Statuses</option>
+                    <option value="New">New</option>
+                    <option value="Viewed">Viewed</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Contacted">Contacted</option>
+                    <option value="Quotation Sent">Quotation Sent</option>
+                    <option value="Won">Won</option>
+                    <option value="Closed">Closed</option>
+                    <option value="Cancelled">Cancelled</option>
+                  </select>
+                </div>
+              </div>
+              <div style="overflow-x: auto;">
+                <table class="admin-data-table">
+                  <thead>
+                    <tr>
+                      <th>Inquiry ID</th>
+                      <th>Customer Name</th>
+                      <th>Firm / Company</th>
+                      <th>Contact Info</th>
+                      <th>Products</th>
+                      <th>Submitted Date</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminInquiriesTableBody">
+                    <!-- Populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 3: PRODUCT MANAGEMENT

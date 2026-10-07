@@ -1,0 +1,1764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apex Electro Supplies & Switchgear | B2B Electrical Procurement Platform</title>
+  <meta name="description" content="Authorized distributor of industrial electrical supplies, Polycab cables, Schneider MCBs, Havells switchgear, ABB automation, and commercial lighting. Direct B2B quotations.">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Lucide icons via unpkg for lightweight vector rendering -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- ===================================================================
+       1. GLOBAL QUICK ROLE SWITCHER BAR (Protected by Admin Auth)
+       Component: components/layout/switcher-bar.html
+       =================================================================== -->
+  <!-- Commercial production clean layout -->
+
+  <!-- ===================================================================
+       2. PUBLIC STOREFRONT (CUSTOMER-FACING VIEWS)
+       =================================================================== -->
+  <div id="publicViewContainer">
+    <!-- Header: components/layout/header.html -->
+    <header class="public-header">
+      <div class="nav-container">
+        <!-- Brand Logo -->
+        <a class="brand-identity" onclick="app.navigatePublic('home')">
+          <div class="brand-logo-icon">
+            <i data-lucide="zap" style="width: 24px; height: 24px; stroke-width: 2.5;"></i>
+          </div>
+          <div class="brand-text">
+            <h1>Apex<span>Electro</span></h1>
+            <div class="brand-subtext">Industrial Electrical Procurement</div>
+          </div>
+        </a>
+
+        <!-- Live Instant Search -->
+        <div class="header-search">
+          <div class="search-input-wrap">
+            <i data-lucide="search" class="search-icon" style="width: 18px; height: 18px;"></i>
+            <input type="text" id="globalSearchInput" placeholder="Search by Product, SKU, Brand (e.g. Polycab, MCB, 2.5 sq.mm)..." autocomplete="off" oninput="app.handleLiveSearch(this.value)">
+          </div>
+          <div class="quick-search-dropdown" id="quickSearchDropdown">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <ul class="nav-menu">
+          <li><a class="nav-link active" id="navHome" onclick="app.navigatePublic('home')">Home</a></li>
+          <li><a class="nav-link" id="navCatalog" onclick="app.navigatePublic('catalog')">Products</a></li>
+          <li><a class="nav-link" id="navCategories" onclick="app.navigatePublic('categories')">Categories</a></li>
+          <li><a class="nav-link" id="navBrands" onclick="app.navigatePublic('brands')">Brands</a></li>
+          <li><a class="nav-link" id="navAbout" onclick="app.navigatePublic('about')">About Us</a></li>
+          <li><a class="nav-link" id="navContact" onclick="app.navigatePublic('contact')">Contact</a></li>
+        </ul>
+
+        <!-- Right Side: Inquiry Cart + Admin Login Lock Button -->
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <button class="inquiry-btn" id="headerInquiryBtn" onclick="app.toggleInquiryDrawer(true)">
+            <i data-lucide="clipboard-list" style="width: 18px; height: 18px;"></i>
+            <span>Inquiry List</span>
+            <span class="inquiry-badge" id="headerInquiryCount">0</span>
+          </button>
+
+          <button class="admin-lock-btn" id="headerAdminLockBtn" onclick="app.requestAdminAccess()" title="Protected Vendor Access">
+            <i data-lucide="lock" style="width: 14px; height: 14px;"></i>
+            <span id="headerAdminBtnText">Vendor Login</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Home: components/storefront/home-view.html -->
+      <section id="publicHomeView">
+        
+        <!-- Hero Section -->
+        <div class="hero-section">
+          <div class="hero-grid-bg"></div>
+          <div class="hero-glow-1"></div>
+          <div class="hero-glow-2"></div>
+
+          <div class="hero-container">
+            <div class="hero-content">
+              <div class="hero-eyebrow">
+                <i data-lucide="shield-check" style="width: 14px; height: 14px;"></i>
+                Authorized OEM Electrical Supplies Distributor
+              </div>
+              <h1 class="hero-title">
+                Reliable Electrical Supplies <br>
+                <span class="gradient-text">for Every Industrial Project</span>
+              </h1>
+              <p class="hero-desc">
+                Streamline commercial electrical procurement. Select exact product specifications and variants, generate multi-product RFQs, and receive certified bulk pricing quotations directly from certified vendors.
+              </p>
+
+              <div class="hero-value-props">
+                <div class="prop-item">
+                  <i data-lucide="check-circle" class="prop-icon" style="width: 18px; height: 18px;"></i>
+                  <span>100% Genuine OEM Certified Stock</span>
+                </div>
+                <div class="prop-item">
+                  <i data-lucide="check-circle" class="prop-icon" style="width: 18px; height: 18px;"></i>
+                  <span>Transparent Quantity Slab Pricing</span>
+                </div>
+                <div class="prop-item">
+                  <i data-lucide="check-circle" class="prop-icon" style="width: 18px; height: 18px;"></i>
+                  <span>Direct Site Delivery & Drum Packing</span>
+                </div>
+                <div class="prop-item">
+                  <i data-lucide="check-circle" class="prop-icon" style="width: 18px; height: 18px;"></i>
+                  <span>Rapid 2-Hour Quotation Turnaround</span>
+                </div>
+              </div>
+
+              <div class="hero-cta-group">
+                <button class="btn-primary" onclick="app.navigatePublic('catalog')">
+                  <i data-lucide="layout-grid" style="width: 18px; height: 18px;"></i>
+                  Explore Products
+                </button>
+                <button class="btn-secondary" onclick="app.toggleInquiryDrawer(true)">
+                  <i data-lucide="file-text" style="width: 18px; height: 18px;"></i>
+                  Request a Quote
+                </button>
+              </div>
+            </div>
+
+            <!-- B2B Workflow Interactive Card -->
+            <div class="hero-workflow-card">
+              <div class="workflow-header">
+                <h3>
+                  <i data-lucide="workflow" style="color: #b45309; width: 20px; height: 20px;"></i>
+                  B2B Procurement Workflow
+                </h3>
+                <span class="workflow-badge">Inquiry-First Model</span>
+              </div>
+
+              <div class="workflow-steps">
+                <div class="wf-step">
+                  <div class="wf-step-num">1</div>
+                  <div class="wf-step-info">
+                    <h4>Browse & Filter Products</h4>
+                    <p>Search electrical items by technical specs, poles, sq.mm, or brand.</p>
+                  </div>
+                </div>
+
+                <div class="wf-step">
+                  <div class="wf-step-num">2</div>
+                  <div class="wf-step-info">
+                    <h4>Select Required Variant & Quantity</h4>
+                    <p>Pick exact rated current, coil voltage, or conductor cross-section.</p>
+                  </div>
+                </div>
+
+                <div class="wf-step">
+                  <div class="wf-step-num">3</div>
+                  <div class="wf-step-info">
+                    <h4>Add Multiple Items to Inquiry Cart</h4>
+                    <p>Combine cables, switchgear, and panels into a single requirement list.</p>
+                  </div>
+                </div>
+
+                <div class="wf-step">
+                  <div class="wf-step-num">4</div>
+                  <div class="wf-step-info">
+                    <h4>Submit Combined RFQ</h4>
+                    <p>Get an instant Inquiry Reference Number (RFQ) without paying online.</p>
+                  </div>
+                </div>
+
+                <div class="wf-step">
+                  <div class="wf-step-num">5</div>
+                  <div class="wf-step-info">
+                    <h4>Receive Official GST Quotation</h4>
+                    <p>Vendor reviews stock and issues formal quotation with tax & freight.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="wf-rule-banner">
+                <i data-lucide="info" style="width: 16px; height: 16px; flex-shrink: 0;"></i>
+                <span><strong>No Retail Checkout:</strong> Designed strictly for enterprise B2B billings and tenders.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Brands Ticker Strip -->
+        <section class="brands-strip">
+          <div class="strip-inner">
+            <span class="strip-label">Authorized OEM Brands:</span>
+            <div class="brands-pill-list" id="heroBrandsPillList">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Categories Showcase Section -->
+        <section class="main-content">
+          <div class="section-header">
+            <div class="section-title-wrap">
+              <h2>
+                <i data-lucide="layers" style="color: #b45309; width: 28px; height: 28px;"></i>
+                Product Categories
+              </h2>
+              <p>Explore comprehensive industrial electrical inventory manageable via vendor portal</p>
+            </div>
+            <button class="btn-secondary" onclick="app.navigatePublic('catalog')">
+              View Full Catalog →
+            </button>
+          </div>
+
+          <div class="category-grid" id="homeCategoryGrid">
+            <!-- Rendered via JS -->
+          </div>
+
+          <!-- Featured Products Section -->
+          <div class="section-header">
+            <div class="section-title-wrap">
+              <h2>
+                <i data-lucide="sparkles" style="color: #b45309; width: 28px; height: 28px;"></i>
+                Featured Industrial Products
+              </h2>
+              <p>High-demand cables, circuit breakers, and distribution components ready for immediate dispatch</p>
+            </div>
+          </div>
+
+          <div class="products-grid" id="homeFeaturedProductsGrid">
+            <!-- Rendered via JS -->
+          </div>
+        </section>
+      </section>
+
+      <!-- VIEW: FULL PRODUCTS CATALOG & EXPLORER -->
+
+      <!-- Catalog: components/storefront/catalog-view.html -->
+      <section id="publicCatalogView" style="display: none;" class="main-content">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <h2>
+              <i data-lucide="boxes" style="color: #b45309; width: 28px; height: 28px;"></i>
+              Complete Product Catalog
+            </h2>
+            <p>Filter by category, brand, live stock availability, and dynamic electrical specifications</p>
+          </div>
+        </div>
+
+        <div class="catalog-layout">
+          <!-- Filter Sidebar -->
+          <aside class="catalog-sidebar">
+            <div class="sidebar-header">
+              <h3>
+                <i data-lucide="sliders-horizontal" style="width: 18px; height: 18px; color: #b45309;"></i>
+                Filter Catalog
+              </h3>
+              <button class="reset-filter-btn" onclick="app.resetCatalogFilters()">Reset All</button>
+            </div>
+
+            <!-- Category Filter -->
+            <div class="filter-group">
+              <div class="filter-title">Category</div>
+              <div class="filter-list" id="filterCategoryList">
+                <!-- Rendered via JS -->
+              </div>
+            </div>
+
+            <!-- Brand Filter -->
+            <div class="filter-group">
+              <div class="filter-title">Brand / OEM</div>
+              <div class="filter-list" id="filterBrandList">
+                <!-- Rendered via JS -->
+              </div>
+            </div>
+
+            <!-- Price & Availability Filter -->
+            <div class="filter-group">
+              <div class="filter-title">Stock & Pricing</div>
+              <div class="filter-list">
+                <label class="filter-checkbox-label">
+                  <input type="checkbox" id="filterInStockOnly" onchange="app.applyFilters()">
+                  <span>In Stock Only</span>
+                </label>
+                <label class="filter-checkbox-label">
+                  <input type="checkbox" id="filterPriceVisibleOnly" onchange="app.applyFilters()">
+                  <span>Price Displayed</span>
+                </label>
+                <label class="filter-checkbox-label">
+                  <input type="checkbox" id="filterPriceOnRequestOnly" onchange="app.applyFilters()">
+                  <span>Price on Request (RFQ)</span>
+                </label>
+              </div>
+            </div>
+          </aside>
+
+          <!-- Catalog Main Area -->
+          <div class="catalog-main">
+            <div class="catalog-toolbar">
+              <div class="results-count">
+                Showing <strong id="catalogResultsCount">0</strong> products found
+              </div>
+
+              <div class="toolbar-controls">
+                <label for="catalogSortSelect" style="font-size: 0.825rem; color: var(--text-muted);">Sort by:</label>
+                <select id="catalogSortSelect" class="sort-select" onchange="app.handleSortChange(this.value)">
+                  <option value="featured">Featured / Recommended</option>
+                  <option value="price-asc">Price: Low to High</option>
+                  <option value="price-desc">Price: High to Low</option>
+                  <option value="name-asc">Product Name (A-Z)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid" id="catalogProductsGrid">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW: BRANDS DIRECTORY -->
+
+      <!-- Brands: components/storefront/brands-view.html -->
+      <section id="publicBrandsView" style="display: none;" class="main-content">
+  <div class="section-header">
+    <div class="section-title-wrap">
+      <h2>
+        <i data-lucide="award" style="color: #b45309; width: 28px; height: 28px;"></i>
+        Authorized Electrical Brands & Manufacturers
+      </h2>
+      <p>Direct supply partnerships with India's most trusted electrical engineering OEMs and multinational manufacturers</p>
+    </div>
+  </div>
+
+  <!-- Trust Badges Strip -->
+  <div class="brands-banner-stats">
+    <div class="brand-stat-item">
+      <div class="brand-stat-icon"><i data-lucide="shield-check" style="width: 22px; height: 22px;"></i></div>
+      <div class="brand-stat-text">
+        <strong>100% Genuine OEM Sourced</strong>
+        <span>Factory sealed with Mill Test Certificates & batch traceability</span>
+      </div>
+    </div>
+    <div class="brand-stat-item">
+      <div class="brand-stat-icon"><i data-lucide="badge-percent" style="width: 22px; height: 22px;"></i></div>
+      <div class="brand-stat-text">
+        <strong>Direct Wholesale Slab Rates</strong>
+        <span>Tiered discounts on bulk drums, coils, lot shipments & tender supplies</span>
+      </div>
+    </div>
+    <div class="brand-stat-item">
+      <div class="brand-stat-icon"><i data-lucide="truck" style="width: 22px; height: 22px;"></i></div>
+      <div class="brand-stat-text">
+        <strong>Direct Site Logistics</strong>
+        <span>Direct pan-India dispatch to infrastructure sites, industrial plants & EPC projects</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="brands-directory-grid" id="brandsDirectoryGrid">
+    <!-- Populated via JS -->
+  </div>
+</section>
+
+      <!-- VIEW: ABOUT US -->
+
+      <!-- About Us: components/storefront/about-view.html -->
+      <section id="publicAboutView" style="display: none;" class="main-content">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <h2>About Apex Electro Supplies</h2>
+            <p>Trusted B2B Electrical Partner for Commercial Infrastructure & Industrial Automation</p>
+          </div>
+        </div>
+
+        <div style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); padding: 2.5rem; margin-bottom: 2rem; box-shadow: var(--shadow-sm);">
+          <h3 style="font-size: 1.4rem; color: var(--text-main); margin-bottom: 1rem;">Operating Philosophy & B2B Reliability</h3>
+          <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem;" id="aboutCompanyText">
+            Apex Electro Supplies is a premier B2B distributor providing certified electrical switchgear, industrial cables, power distribution equipment, and automation components to commercial EPC contractors, panel builders, and industrial plants across India.
+          </p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+            <div style="background: #fdfaf5; padding: 1.25rem; border-radius: var(--radius-md); border-left: 4px solid #b45309; border: 1px solid var(--border-subtle);">
+              <h4 style="color: var(--text-main); margin-bottom: 0.35rem;">Pan-India Logistics</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Direct factory dispatch and regional warehouse distribution for fast project delivery.</p>
+            </div>
+            <div style="background: #fdfaf5; padding: 1.25rem; border-radius: var(--radius-md); border-left: 4px solid #2563eb; border: 1px solid var(--border-subtle);">
+              <h4 style="color: var(--text-main); margin-bottom: 0.35rem;">CPRI & BIS Certified</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">All supplied wires, MCBs, and switchgears carry genuine ISI marks and OEM test certificates.</p>
+            </div>
+            <div style="background: #fdfaf5; padding: 1.25rem; border-radius: var(--radius-md); border-left: 4px solid #059669; border: 1px solid var(--border-subtle);">
+              <h4 style="color: var(--text-main); margin-bottom: 0.35rem;">Transparent GST Quotations</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Instant formal quotation generation with itemized HSN codes, quantity slabs, and tax breakdown.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW: CONTACT US -->
+
+      <!-- Contact: components/storefront/contact-view.html -->
+      <section id="publicContactView" style="display: none;" class="main-content">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <h2>Contact Sales & Engineering Support</h2>
+            <p>Submit procurement queries or get in touch with our technical sales division</p>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+          <!-- Contact Form -->
+          <div style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); padding: 2rem; box-shadow: var(--shadow-sm);">
+            <h3 style="color: var(--text-main); font-size: 1.2rem; margin-bottom: 1.25rem;">Direct Message Form</h3>
+            <form id="publicContactForm" onsubmit="app.handleContactSubmit(event)">
+              <div class="form-grid-2col">
+                <div class="form-group">
+                  <label class="form-label" for="cntName">Full Name <span class="req">*</span></label>
+                  <input type="text" id="cntName" class="form-control" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="cntPhone">Phone Number <span class="req">*</span></label>
+                  <input type="tel" id="cntPhone" class="form-control" required placeholder="+91 98765 43210">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="cntEmail">Business Email <span class="req">*</span></label>
+                  <input type="email" id="cntEmail" class="form-control" required placeholder="procurement@company.com">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="cntCompany">Company / Firm Name</label>
+                  <input type="text" id="cntCompany" class="form-control" placeholder="Company / Enterprise name">
+                </div>
+                <div class="form-group full-width">
+                  <label class="form-label" for="cntSubject">Subject <span class="req">*</span></label>
+                  <input type="text" id="cntSubject" class="form-control" required placeholder="e.g. Requirement for Industrial Switchgear & Cables...">
+                </div>
+                <div class="form-group full-width">
+                  <label class="form-label" for="cntMessage">Message / Requirement Details <span class="req">*</span></label>
+                  <textarea id="cntMessage" class="form-control" rows="4" required placeholder="Please provide details regarding required quantities, project location, or technical specifications..."></textarea>
+                </div>
+              </div>
+
+              <button type="submit" class="btn-primary" style="margin-top: 1.25rem; width: 100%; justify-content: center;">
+                <i data-lucide="send" style="width: 16px; height: 16px;"></i>
+                Send Message to Vendor
+              </button>
+            </form>
+          </div>
+
+          <!-- Business Information Box -->
+          <div style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); padding: 2rem; display: flex; flex-direction: column; gap: 1.5rem; box-shadow: var(--shadow-sm);">
+            <h3 style="color: var(--text-main); font-size: 1.2rem;">Registered Office & Warehouse</h3>
+            
+            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+              <i data-lucide="map-pin" style="color: #b45309; width: 22px; height: 22px; flex-shrink: 0; margin-top: 3px;"></i>
+              <div>
+                <strong style="color: var(--text-main);">Registered Address:</strong>
+                <p style="color: var(--text-muted); font-size: 0.875rem;" id="contactAddressText">Plot 42-B, Industrial Area Phase II, MIDC Electronics Zone, Navi Mumbai, MH 400705</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+              <i data-lucide="phone" style="color: #b45309; width: 22px; height: 22px; flex-shrink: 0;"></i>
+              <div>
+                <strong style="color: var(--text-main);">Phone & WhatsApp:</strong>
+                <p style="color: var(--text-muted); font-size: 0.875rem;" id="contactPhoneText">+91 98201 44520</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+              <i data-lucide="mail" style="color: #b45309; width: 22px; height: 22px; flex-shrink: 0;"></i>
+              <div>
+                <strong style="color: var(--text-main);">Email Desk:</strong>
+                <p style="color: var(--text-muted); font-size: 0.875rem;" id="contactEmailText">procurement@apexelectro.in</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+              <i data-lucide="file-check-2" style="color: #b45309; width: 22px; height: 22px; flex-shrink: 0;"></i>
+              <div>
+                <strong style="color: var(--text-main);">GSTIN Identification:</strong>
+                <p style="color: var(--text-muted); font-family: var(--font-mono); font-size: 0.875rem;" id="contactGstinText">27AABCA1234F1Z9</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+              <i data-lucide="clock" style="color: #b45309; width: 22px; height: 22px; flex-shrink: 0;"></i>
+              <div>
+                <strong style="color: var(--text-main);">Working Hours:</strong>
+                <p style="color: var(--text-muted); font-size: 0.875rem;" id="contactHoursText">Mon - Sat: 9:00 AM - 7:30 PM (IST)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Public Footer -->
+    </main>
+
+    <!-- Footer: components/layout/footer.html -->
+    <footer style="background: #f4eee5; border-top: 1px solid var(--border-medium); padding: 3rem 1.5rem 2rem; margin-top: 4rem;">
+      <div style="max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 2.5rem;">
+        <div>
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+            <div class="brand-logo-icon" style="width: 32px; height: 32px;">
+              <i data-lucide="zap" style="width: 18px; height: 18px;"></i>
+            </div>
+            <h3 style="color: var(--text-main); font-size: 1.15rem; font-weight: 800;">Apex<span>Electro</span></h3>
+          </div>
+          <p style="color: var(--text-dim); font-size: 0.85rem; line-height: 1.6; max-width: 380px;">
+            Engineered specifically for B2B electrical contractors, switchgear panel builders, and industrial material supply operations.
+          </p>
+        </div>
+
+        <div>
+          <h4 style="color: var(--text-main); font-size: 0.875rem; text-transform: uppercase; margin-bottom: 1rem;">Top Categories</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.825rem; color: var(--text-muted);">
+            <li><a style="color: inherit; text-decoration: none; cursor: pointer;" onclick="app.filterByCategory('cat-wires-cables')">Wires & Cables</a></li>
+            <li><a style="color: inherit; text-decoration: none; cursor: pointer;" onclick="app.filterByCategory('cat-mcb-protection')">MCB & Protection</a></li>
+            <li><a style="color: inherit; text-decoration: none; cursor: pointer;" onclick="app.filterByCategory('cat-lighting')">Lighting Systems</a></li>
+            <li><a style="color: inherit; text-decoration: none; cursor: pointer;" onclick="app.filterByCategory('cat-industrial')">Industrial Automation</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="color: var(--text-main); font-size: 0.875rem; text-transform: uppercase; margin-bottom: 1rem;">Key Brands</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.825rem; color: var(--text-muted);">
+            <li>Polycab Cables</li>
+            <li>Schneider Electric</li>
+            <li>Havells Switchgear</li>
+            <li>ABB Automation</li>
+            <li>Siemens Electricals</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="color: var(--text-main); font-size: 0.875rem; text-transform: uppercase; margin-bottom: 1rem;">Vendor Portal</h4>
+          <p style="font-size: 0.8rem; color: var(--text-dim); line-height: 1.6;">
+            Access restricted to verified store admins and dispatch managers with login password.
+          </p>
+          <button class="btn-xs-outline" style="margin-top: 1rem;" onclick="app.requestAdminAccess()">
+            <i data-lucide="lock" style="width: 12px; height: 12px; display: inline-block; vertical-align: middle;"></i>
+            Admin Password Login →
+          </button>
+        </div>
+      </div>
+
+      <div style="max-width: 1320px; margin: 0 auto; border-top: 1px solid var(--border-medium); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.775rem; color: var(--text-dim); flex-wrap: wrap; gap: 1rem;">
+        <div>© 2026 Apex Electro Supplies & Switchgear Pvt. Ltd. All rights reserved. B2B Industrial Vendor Platform.</div>
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="#" style="color: inherit; text-decoration: none;">Privacy Policy</a>
+          <a href="#" style="color: inherit; text-decoration: none;">Terms of Supply</a>
+          <a href="#" style="color: inherit; text-decoration: none;">GST Compliant RFQ</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ===================================================================
+       3. SLIDE-OUT INQUIRY DRAWER / INQUIRY CART (Sections 24-25)
+       Component: components/drawer/inquiry-drawer.html
+       =================================================================== -->
+  <div class="inquiry-drawer-overlay" id="inquiryDrawerOverlay" onclick="app.handleDrawerOverlayClick(event)">
+    <div class="inquiry-drawer" id="inquiryDrawer">
+      <div class="drawer-header">
+        <h3>
+          <i data-lucide="clipboard-list" style="color: #b45309; width: 20px; height: 20px;"></i>
+          Inquiry List (<span id="drawerCountText">0</span> items)
+        </h3>
+        <button class="close-drawer-btn" onclick="app.toggleInquiryDrawer(false)">&times;</button>
+      </div>
+
+      <div class="drawer-body" id="drawerItemsList">
+        <!-- Rendered via JS -->
+      </div>
+
+      <div class="drawer-footer">
+        <div class="drawer-summary-row">
+          <span>Total Products Added:</span>
+          <strong id="drawerSummaryCount">0 items</strong>
+        </div>
+        <button class="btn-proceed-inquiry" id="drawerProceedBtn" onclick="app.openInquirySubmitModal()">
+          <span>Proceed to Submit Inquiry (RFQ)</span>
+          <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       4. CUSTOMER MODALS (ADMIN LOGIN, PRODUCT DETAIL, RFQ CHECKOUT, SUCCESS, QUOTATION)
+       =================================================================== -->
+  <!-- Admin Login Modal: components/modals/modal-admin-login.html -->
+  <dialog class="custom-modal" id="adminLoginModal" style="max-width: 480px;">
+    <div class="modal-content-box">
+      <div class="modal-header" style="background: #fbf8f2;">
+        <h3>
+          <i data-lucide="shield-check" style="color: #b45309; width: 22px; height: 22px;"></i>
+          Vendor Admin Authentication
+        </h3>
+        <button class="close-drawer-btn" onclick="app.closeModal('adminLoginModal')">&times;</button>
+      </div>
+      <div class="modal-body" style="background: #ffffff; padding: 2rem;">
+        <div style="background: #fef3c7; border: 1px solid #fde68a; border-radius: var(--radius-md); padding: 0.85rem 1rem; margin-bottom: 1.5rem; display: flex; align-items: flex-start; gap: 0.6rem;">
+          <i data-lucide="lock" style="color: #b45309; width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px;"></i>
+          <div style="font-size: 0.8rem; color: #92400e; line-height: 1.45;">
+            <strong>Restricted Access:</strong> Only authorized store admins and dispatch managers may access inventory, pricing, and customer inquiries.
+          </div>
+        </div>
+
+        <form id="adminLoginForm" onsubmit="app.handleAdminLogin(event)">
+          <div style="display: flex; flex-direction: column; gap: 1.15rem;">
+            <div class="form-group">
+              <label class="form-label" for="admLoginEmail">Admin Email / Username <span class="req">*</span></label>
+              <input type="text" id="admLoginEmail" class="form-control" required placeholder="Enter admin email or username" autocomplete="username" value="">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="admLoginPassword">Password <span class="req">*</span></label>
+              <div style="position: relative; display: flex; align-items: center;">
+                <input type="password" id="admLoginPassword" class="form-control" style="width: 100%; padding-right: 40px;" required placeholder="Enter password" autocomplete="current-password" value="">
+                <button type="button" onclick="app.togglePasswordVisibility('admLoginPassword')" style="position: absolute; right: 10px; background: none; border: none; color: var(--text-dim); cursor: pointer;" title="Toggle password visibility">
+                  <i data-lucide="eye" style="width: 16px; height: 16px;"></i>
+                </button>
+              </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem;">
+              <label class="filter-checkbox-label">
+                <input type="checkbox" id="admRememberMe">
+                <span>Remember me</span>
+              </label>
+              <a href="javascript:void(0)" onclick="alert('Please contact the IT administrator or store owner to reset your login credentials.')" style="color: #b45309; font-weight: 600; text-decoration: none;">Forgot password?</a>
+            </div>
+
+            <div id="adminLoginError" style="display: none; padding: 0.65rem 0.85rem; background: #fee2e2; border: 1px solid #fecaca; border-radius: var(--radius-sm); font-size: 0.8rem; color: #b91c1c;">
+              Invalid email or password. Please verify your credentials and try again.
+            </div>
+
+            <button type="submit" class="btn-primary" style="justify-content: center; width: 100%; margin-top: 0.5rem; height: 44px;">
+              <i data-lucide="key" style="width: 16px; height: 16px;"></i>
+              Authenticate & Enter Admin Portal
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Product Detail Modal: components/modals/modal-product-detail.html -->
+  <dialog class="custom-modal" id="productDetailModal">
+    <div class="modal-content-box">
+      <div class="modal-header">
+        <h3 id="modalProductTitle">Product Details</h3>
+        <button class="close-drawer-btn" onclick="app.closeModal('productDetailModal')">&times;</button>
+      </div>
+      <div class="modal-body" id="modalProductBody">
+        <!-- Populated via JS -->
+      </div>
+    </div>
+  </dialog>
+
+  <!-- RFQ Checkout Modal: components/modals/modal-inquiry-submit.html -->
+  <dialog class="custom-modal" id="inquirySubmitModal">
+    <div class="modal-content-box">
+      <div class="modal-header">
+        <h3>
+          <i data-lucide="file-text" style="color: #b45309; width: 22px; height: 22px;"></i>
+          Submit B2B Material Inquiry
+        </h3>
+        <button class="close-drawer-btn" onclick="app.closeModal('inquirySubmitModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="inquiryForm" onsubmit="app.handleInquirySubmit(event)">
+          <!-- Personal Information -->
+          <h4 style="color: #b45309; font-size: 0.95rem; margin-bottom: 0.85rem; border-bottom: 1px solid var(--border-medium); padding-bottom: 0.4rem;">
+            1. Contact Representative Information
+          </h4>
+          <div class="form-grid-2col" style="margin-bottom: 1.5rem;">
+            <div class="form-group">
+              <label class="form-label" for="inqFullName">Full Name <span class="req">*</span></label>
+              <input type="text" id="inqFullName" class="form-control" required placeholder="Enter your full name">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="inqMobile">Mobile Number <span class="req">*</span></label>
+              <input type="tel" id="inqMobile" class="form-control" required placeholder="+91 98765 43210">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="inqEmail">Official Email <span class="req">*</span></label>
+              <input type="email" id="inqEmail" class="form-control" required placeholder="procurement@company.com">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="inqCompany">Company / Organization Name</label>
+              <input type="text" id="inqCompany" class="form-control" placeholder="Company / Firm name">
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label" for="inqDesignation">Designation / Role</label>
+              <input type="text" id="inqDesignation" class="form-control" placeholder="e.g. Purchase Manager / Project Engineer">
+            </div>
+          </div>
+
+          <!-- Business Information -->
+          <h4 style="color: #b45309; font-size: 0.95rem; margin-bottom: 0.85rem; border-bottom: 1px solid var(--border-medium); padding-bottom: 0.4rem;">
+            2. Business & Delivery Details
+          </h4>
+          <div class="form-grid-2col" style="margin-bottom: 1.5rem;">
+            <div class="form-group">
+              <label class="form-label" for="inqGst">GST Number (Optional for quote)</label>
+              <input type="text" id="inqGst" class="form-control" placeholder="Enter 15-digit GSTIN (optional)">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="inqDeliveryDate">Preferred Delivery Date</label>
+              <input type="date" id="inqDeliveryDate" class="form-control">
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label" for="inqBillingAddress">Billing Address</label>
+              <input type="text" id="inqBillingAddress" class="form-control" placeholder="Registered office address for tax invoice">
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label" for="inqDeliveryLocation">Project Site / Delivery Location</label>
+              <input type="text" id="inqDeliveryLocation" class="form-control" placeholder="Site address, Plot No., City & Pincode">
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label" for="inqMessage">Additional Requirements / Technical Notes</label>
+              <textarea id="inqMessage" class="form-control" rows="3" placeholder="e.g. Specify drum lengths, test report requirements, brand alternatives, or payment milestones..."></textarea>
+            </div>
+          </div>
+
+          <!-- Itemized Breakdown Preview -->
+          <h4 style="color: #b45309; font-size: 0.95rem; margin-bottom: 0.85rem; border-bottom: 1px solid var(--border-medium); padding-bottom: 0.4rem;">
+            3. Products in this Inquiry (<span id="inqFormItemsCount">0</span> Items)
+          </h4>
+          <div id="inqFormItemsSummary" style="margin-bottom: 1.5rem;">
+            <!-- Summary list rendered via JS -->
+          </div>
+
+          <div class="modal-footer" style="padding-left: 0; padding-right: 0; background: transparent;">
+            <button type="button" class="btn-secondary" onclick="app.closeModal('inquirySubmitModal')">Cancel</button>
+            <button type="submit" class="btn-primary">
+              <i data-lucide="check-circle" style="width: 18px; height: 18px;"></i>
+              Confirm & Submit Inquiry (RFQ)
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Inquiry Success Token Modal: components/modals/modal-inquiry-success.html -->
+  <dialog class="custom-modal" id="inquirySuccessModal">
+    <div class="modal-content-box">
+      <div class="modal-header">
+        <h3>
+          <i data-lucide="check-circle" style="color: #059669; width: 22px; height: 22px;"></i>
+          Inquiry Successfully Dispatched!
+        </h3>
+        <button class="close-drawer-btn" onclick="app.closeModal('inquirySuccessModal')">&times;</button>
+      </div>
+      <div class="modal-body" id="inquirySuccessBody">
+        <!-- Rendered via JS -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" onclick="app.closeModal('inquirySuccessModal')">Back to Browsing</button>
+        <button class="btn-primary" onclick="app.jumpToAdminInquiry()">
+          <i data-lucide="lock" style="width: 16px; height: 16px;"></i>
+          View in Vendor Admin Portal
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Quotation View Modal: components/modals/modal-quotation-view.html -->
+  <dialog class="custom-modal" id="quotationModal" style="max-width: 900px;">
+    <div class="modal-content-box">
+      <div class="modal-header">
+        <h3>
+          <i data-lucide="file-spreadsheet" style="color: #b45309; width: 22px; height: 22px;"></i>
+          B2B Formal Quotation Viewer & Generator
+        </h3>
+        <button class="close-drawer-btn" onclick="app.closeModal('quotationModal')">&times;</button>
+      </div>
+      <div class="modal-body" id="quotationSheetBody">
+        <!-- Rendered via JS -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" onclick="window.print()">
+          <i data-lucide="printer" style="width: 16px; height: 16px;"></i>
+          Print / Save as PDF
+        </button>
+        <button class="btn-primary" id="btnSendQuoteBrevo" onclick="app.sendQuotationViaBrevo()" style="background: linear-gradient(135deg, #059669 0%, #047857 100%);">
+          <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
+          Send Quote via Brevo Email
+        </button>
+        <button class="btn-secondary" onclick="app.closeModal('quotationModal')">
+          Done
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ===================================================================
+       5. VENDOR ADMIN PORTAL
+       =================================================================== -->
+  <div id="adminViewContainer" style="display: none;">
+    <div class="admin-layout">
+      <!-- Admin Sidebar: components/admin/admin-sidebar.html -->
+      <aside class="admin-sidebar">
+        <div class="admin-brand">
+          <div class="brand-logo-icon" style="width: 32px; height: 32px; background: linear-gradient(135deg, #d97706 0%, #b45309 100%);">
+            <i data-lucide="zap" style="width: 18px; height: 18px;"></i>
+          </div>
+          <div>
+            <h2 style="font-size: 1rem; color: #ffffff; font-weight: 800;">Apex<span style="color: #fbbf24;">Admin</span></h2>
+            <div style="font-size: 0.65rem; color: #a8a29e;">Vendor Control Suite</div>
+          </div>
+          <span class="admin-badge">V1</span>
+        </div>
+
+        <ul class="admin-menu">
+          <li>
+            <a class="admin-nav-item active" id="admNavDashboard" onclick="app.switchAdminTab('dashboard')">
+              <i data-lucide="layout-dashboard" style="width: 18px; height: 18px;"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a class="admin-nav-item" id="admNavInquiries" onclick="app.switchAdminTab('inquiries')">
+              <i data-lucide="inbox" style="width: 18px; height: 18px;"></i>
+              <span>Inquiries (RFQs)</span>
+              <span class="nav-counter" id="admInquiriesBadge">0</span>
+            </a>
+          </li>
+          <li>
+            <a class="admin-nav-item" id="admNavProducts" onclick="app.switchAdminTab('products')">
+              <i data-lucide="package" style="width: 18px; height: 18px;"></i>
+              <span>Products Catalog</span>
+              <span class="nav-counter" id="admProductsBadge">0</span>
+            </a>
+          </li>
+          <li>
+            <a class="admin-nav-item" id="admNavInventory" onclick="app.switchAdminTab('inventory')">
+              <i data-lucide="boxes" style="width: 18px; height: 18px;"></i>
+              <span>Inventory & Stock</span>
+              <span class="nav-counter" id="admLowStockBadge" style="background: #d97706; color: #ffffff;">0</span>
+            </a>
+          </li>
+          <li>
+            <a class="admin-nav-item" id="admNavQuotations" onclick="app.switchAdminTab('quotations')">
+              <i data-lucide="file-spreadsheet" style="width: 18px; height: 18px;"></i>
+              <span>Quotations</span>
+            </a>
+          </li>
+          <li>
+            <a class="admin-nav-item" id="admNavCategories" onclick="app.switchAdminTab('categories')">
+              <i data-lucide="layers" style="width: 18px; height: 18px;"></i>
+              <span>Categories</span>
+            </a>
+          </li>
+          <li>
+            <a class="admin-nav-item" id="admNavBrands" onclick="app.switchAdminTab('brands')">
+              <i data-lucide="award" style="width: 18px; height: 18px;"></i>
+              <span>Brands</span>
+            </a>
+          </li>
+          <li>
+            <a class="admin-nav-item" id="admNavContacts" onclick="app.switchAdminTab('contacts')">
+              <i data-lucide="message-square" style="width: 18px; height: 18px;"></i>
+              <span>Contact Messages</span>
+              <span class="nav-counter" id="admContactsBadge">0</span>
+            </a>
+          </li>
+          <li>
+            <a class="admin-nav-item" id="admNavProfile" onclick="app.switchAdminTab('profile')">
+              <i data-lucide="settings" style="width: 18px; height: 18px;"></i>
+              <span>Business Settings</span>
+            </a>
+          </li>
+        </ul>
+
+        <div style="margin-top: auto; padding: 1rem; background: #292524; border-radius: var(--radius-md); border: 1px solid #44403c;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+            <div style="font-size: 0.775rem; color: #f5f5f4; font-weight: 700;" id="adminSidebarName">Harsh</div>
+            <span style="font-size: 0.65rem; color: #fbbf24; background: rgba(251, 191, 36, 0.2); padding: 0.1rem 0.35rem; border-radius: 4px;">Store Admin</span>
+          </div>
+          <div style="font-size: 0.7rem; color: #a8a29e; margin-bottom: 0.75rem;" id="adminSidebarEmail">admin@apexelectro.in</div>
+          <button class="btn-xs-outline" style="width: 100%; color: #f87171; border-color: #7f1d1d; background: #450a0a; justify-content: center; display: flex; align-items: center; gap: 0.35rem;" onclick="app.handleAdminLogout()">
+            <i data-lucide="log-out" style="width: 12px; height: 12px;"></i>
+            Sign Out of Admin
+          </button>
+        </div>
+      </aside>
+
+      <!-- Admin Main Content Area -->
+      <div class="admin-main">
+        <!-- Admin Topbar: components/admin/admin-topbar.html -->
+        <header class="admin-topbar">
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <h2 id="adminPageHeaderTitle" style="font-size: 1.25rem; font-weight: 800; color: var(--text-main);">Admin Dashboard</h2>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <button class="btn-secondary" onclick="app.openNewProductModal()">
+              <i data-lucide="plus" style="width: 16px; height: 16px;"></i>
+              Add New Product
+            </button>
+            <button class="btn-primary" onclick="app.switchView('public')">
+              <i data-lucide="external-link" style="width: 16px; height: 16px;"></i>
+              View Public Website
+            </button>
+            <button class="btn-xs-outline" style="color: #dc2626; border-color: #fecaca; background: #fee2e2;" onclick="app.handleAdminLogout()" title="Logout from Admin">
+              <i data-lucide="log-out" style="width: 14px; height: 14px;"></i>
+              Logout
+            </button>
+          </div>
+        </header>
+
+        <!-- Admin Scrollable Content Container -->
+        <div class="admin-content-inner">
+          <!-- TAB 1: Dashboard (components/admin/tab-dashboard.html) -->
+          <!-- TAB 1: ADMIN DASHBOARD (Sections 34 - 35) -->
+          <div id="adminTabDashboard">
+            <!-- KPI Cards Grid -->
+            <div class="kpi-grid">
+              <div class="kpi-card amber">
+                <span class="kpi-label">Total Inquiries</span>
+                <span class="kpi-value" id="kpiTotalInquiries">0</span>
+                <span class="kpi-meta"><strong id="kpiNewInquiries" style="color: #b45309;">0 New</strong> requiring response</span>
+              </div>
+              <div class="kpi-card blue">
+                <span class="kpi-label">Total Products</span>
+                <span class="kpi-value" id="kpiTotalProducts">0</span>
+                <span class="kpi-meta"><span id="kpiActiveProducts">0</span> active in catalog</span>
+              </div>
+              <div class="kpi-card red">
+                <span class="kpi-label">Low Stock Alerts</span>
+                <span class="kpi-value" id="kpiLowStock">0</span>
+                <span class="kpi-meta" id="kpiOutOfStock">0 out of stock</span>
+              </div>
+              <div class="kpi-card green">
+                <span class="kpi-label">Categories / Brands</span>
+                <span class="kpi-value" id="kpiCatBrandCount">0 / 0</span>
+                <span class="kpi-meta">Configurable taxonomy</span>
+              </div>
+            </div>
+
+            <!-- Recent Inquiries Section -->
+            <div class="table-container">
+              <div class="table-toolbar">
+                <h3 style="font-size: 1rem; color: var(--text-main); font-weight: 800;">Recent Inquiries / RFQs</h3>
+                <button class="btn-xs-outline" onclick="app.switchAdminTab('inquiries')">View All Inquiries →</button>
+              </div>
+              <div style="overflow-x: auto;">
+                <table class="admin-data-table">
+                  <thead>
+                    <tr>
+                      <th>Inquiry No.</th>
+                      <th>Customer & Company</th>
+                      <th>Phone & Email</th>
+                      <th>Products</th>
+                      <th>Date</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminDashboardRecentInquiries">
+                    <!-- Populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Low Stock Warnings & Recent Contacts Split -->
+            <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 1.5rem;">
+              <!-- Low Stock Box -->
+              <div class="table-container">
+                <div class="table-toolbar">
+                  <h3 style="font-size: 0.95rem; color: var(--text-main); font-weight: 800; display: flex; align-items: center; gap: 0.5rem;">
+                    <i data-lucide="alert-triangle" style="color: #b45309; width: 16px; height: 16px;"></i>
+                    Low Stock & Reorder Watchlist
+                  </h3>
+                </div>
+                <div style="overflow-x: auto;">
+                  <table class="admin-data-table">
+                    <thead>
+                      <tr>
+                        <th>Product & Variant</th>
+                        <th>SKU</th>
+                        <th>Available</th>
+                        <th>Reorder Level</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="adminDashboardLowStockTable">
+                      <!-- Populated via JS -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Recent Contact Submissions -->
+              <div class="table-container">
+                <div class="table-toolbar">
+                  <h3 style="font-size: 0.95rem; color: var(--text-main); font-weight: 800; display: flex; align-items: center; gap: 0.5rem;">
+                    <i data-lucide="mail" style="color: #2563eb; width: 16px; height: 16px;"></i>
+                    Recent Contact Submissions
+                  </h3>
+                </div>
+                <div style="overflow-x: auto;">
+                  <table class="admin-data-table">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Subject</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody id="adminDashboardRecentContacts">
+                      <!-- Populated via JS -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 2: INQUIRIES MANAGEMENT
+
+          <!-- TAB 2: Inquiries RFQ (components/admin/tab-inquiries.html) -->
+          <!-- TAB 2: INQUIRIES MANAGEMENT (Sections 28 - 30) -->
+          <div id="adminTabInquiries" style="display: none;">
+            <div class="table-container">
+              <div class="table-toolbar">
+                <div style="display: flex; gap: 1rem; align-items: center; flex: 1;">
+                  <input type="text" id="adminInquirySearch" class="form-control" style="max-width: 300px;" placeholder="Search inquiry #, customer, firm..." oninput="app.filterAdminInquiries(this.value)">
+                  <select id="adminInquiryStatusFilter" class="sort-select" onchange="app.filterAdminInquiriesByStatus(this.value)">
+                    <option value="ALL">All Statuses</option>
+                    <option value="New">New</option>
+                    <option value="Viewed">Viewed</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Contacted">Contacted</option>
+                    <option value="Quotation Sent">Quotation Sent</option>
+                    <option value="Won">Won</option>
+                    <option value="Closed">Closed</option>
+                    <option value="Cancelled">Cancelled</option>
+                  </select>
+                </div>
+              </div>
+              <div style="overflow-x: auto;">
+                <table class="admin-data-table">
+                  <thead>
+                    <tr>
+                      <th>Inquiry ID</th>
+                      <th>Customer Name</th>
+                      <th>Firm / Company</th>
+                      <th>Contact Info</th>
+                      <th>Products</th>
+                      <th>Submitted Date</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminInquiriesTableBody">
+                    <!-- Populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 3: PRODUCT MANAGEMENT
+
+          <!-- TAB 3: Products (components/admin/tab-products.html) -->
+          <!-- TAB 3: PRODUCT MANAGEMENT (Sections 9 - 16, 36) -->
+          <div id="adminTabProducts" style="display: none;">
+            <div class="table-container">
+              <div class="table-toolbar">
+                <div style="display: flex; gap: 1rem; align-items: center; flex: 1;">
+                  <input type="text" id="adminProductSearch" class="form-control" style="max-width: 320px;" placeholder="Search product name, SKU, code..." oninput="app.filterAdminProducts(this.value)">
+                  <select id="adminProductCategoryFilter" class="sort-select" onchange="app.filterAdminProductsByCategory(this.value)">
+                    <option value="ALL">All Categories</option>
+                  </select>
+                </div>
+                <button class="btn-primary" onclick="app.openNewProductModal()">
+                  <i data-lucide="plus" style="width: 16px; height: 16px;"></i>
+                  Create Product
+                </button>
+              </div>
+
+              <div style="overflow-x: auto;">
+                <table class="admin-data-table">
+                  <thead>
+                    <tr>
+                      <th>Image</th>
+                      <th>Product Name</th>
+                      <th>Category</th>
+                      <th>Brand</th>
+                      <th>Primary SKU</th>
+                      <th>Price / Unit</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminProductsTableBody">
+                    <!-- Populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 4: INVENTORY MANAGEMENT
+
+          <!-- TAB 4: Inventory & Stock Ledger (components/admin/tab-inventory.html) -->
+          <!-- TAB 4: INVENTORY MANAGEMENT & STOCK ADJUSTMENTS (Sections 17 - 19, 39) -->
+          <div id="adminTabInventory" style="display: none;">
+            <div class="table-container">
+              <div class="table-toolbar">
+                <div style="display: flex; gap: 1rem; align-items: center; flex: 1;">
+                  <h3 style="font-size: 1rem; color: var(--text-main); font-weight: 800;">Live Variant Stock Ledger</h3>
+                  <span style="font-size: 0.775rem; color: var(--text-dim);">Available = Current Stock - Reserved Stock</span>
+                </div>
+                <button class="btn-secondary" onclick="app.openStockAdjustmentModal()">
+                  <i data-lucide="sliders" style="width: 16px; height: 16px;"></i>
+                  + Stock Adjustment (Audit)
+                </button>
+              </div>
+
+              <div style="overflow-x: auto;">
+                <table class="admin-data-table">
+                  <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th>Variant</th>
+                      <th>SKU</th>
+                      <th>Current Stock</th>
+                      <th>Reserved</th>
+                      <th>Available Stock</th>
+                      <th>Reorder Level</th>
+                      <th>Stock Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminInventoryTableBody">
+                    <!-- Populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Stock Adjustment History Audit Log (Section 19) -->
+            <div class="table-container">
+              <div class="table-toolbar">
+                <h3 style="font-size: 0.95rem; color: var(--text-main); font-weight: 800;">Stock Adjustment Audit Log (Audit History)</h3>
+              </div>
+              <div style="overflow-x: auto;">
+                <table class="admin-data-table">
+                  <thead>
+                    <tr>
+                      <th>Date / Time</th>
+                      <th>Product & Variant</th>
+                      <th>SKU</th>
+                      <th>Previous</th>
+                      <th>Delta</th>
+                      <th>New Stock</th>
+                      <th>Reason / Note</th>
+                      <th>Admin User</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminStockAuditTableBody">
+                    <!-- Populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 5: QUOTATIONS MANAGER
+
+          <!-- TAB 5: Quotations (components/admin/tab-quotations.html) -->
+          <!-- TAB 5: QUOTATIONS MANAGER (Sections 42 - 44) -->
+          <div id="adminTabQuotations" style="display: none;">
+            <div class="table-container">
+              <div class="table-toolbar">
+                <h3 style="font-size: 1rem; color: var(--text-main); font-weight: 800;">Issued B2B Quotations</h3>
+              </div>
+              <div style="overflow-x: auto;">
+                <table class="admin-data-table">
+                  <thead>
+                    <tr>
+                      <th>Quotation No.</th>
+                      <th>Ref Inquiry</th>
+                      <th>Customer & Company</th>
+                      <th>Grand Total (₹)</th>
+                      <th>GST Treatment</th>
+                      <th>Issue Date</th>
+                      <th>Valid Until</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminQuotationsTableBody">
+                    <!-- Populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 6: CATEGORIES & SUBCATEGORIES
+
+          <!-- TAB 6: Categories (components/admin/tab-categories.html) -->
+          <!-- TAB 6: CATEGORIES & SUBCATEGORIES (Sections 7, 37) -->
+          <div id="adminTabCategories" style="display: none;">
+            <div class="table-container">
+              <div class="table-toolbar">
+                <h3 style="font-size: 1rem; color: var(--text-main); font-weight: 800;">Categories & Subcategories</h3>
+                <button class="btn-primary" onclick="app.openAddCategoryModal()">+ Add Category</button>
+              </div>
+              <div style="overflow-x: auto;">
+                <table class="admin-data-table">
+                  <thead>
+                    <tr>
+                      <th>Order</th>
+                      <th>Category Name</th>
+                      <th>Subcategories</th>
+                      <th>Description</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminCategoriesTableBody">
+                    <!-- Populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 7: BRANDS
+
+          <!-- TAB 7: Brands (components/admin/tab-brands.html) -->
+          <!-- TAB 7: BRANDS (Sections 8, 38) -->
+          <div id="adminTabBrands" style="display: none;">
+            <div class="table-container">
+              <div class="table-toolbar">
+                <h3 style="font-size: 1rem; color: var(--text-main); font-weight: 800;">Brand Management</h3>
+                <button class="btn-primary" onclick="app.openAddBrandModal()">+ Add Brand</button>
+              </div>
+              <div style="overflow-x: auto;">
+                <table class="admin-data-table">
+                  <thead>
+                    <tr>
+                      <th>Brand Name</th>
+                      <th>Origin</th>
+                      <th>Description</th>
+                      <th>Products</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminBrandsTableBody">
+                    <!-- Populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 8: CONTACT SUBMISSIONS
+
+          <!-- TAB 8: Contact Inbound Submissions (components/admin/tab-contacts.html) -->
+          <!-- TAB 8: CONTACT SUBMISSIONS (Section 33) -->
+          <div id="adminTabContacts" style="display: none;">
+            <div class="table-container">
+              <div class="table-toolbar">
+                <h3 style="font-size: 1rem; color: var(--text-main); font-weight: 800;">Inbound Contact Messages</h3>
+              </div>
+              <div style="overflow-x: auto;">
+                <table class="admin-data-table">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Name</th>
+                      <th>Email & Phone</th>
+                      <th>Company</th>
+                      <th>Subject</th>
+                      <th>Message</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminContactsTableBody">
+                    <!-- Populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 9: BUSINESS PROFILE & CMS SETTINGS
+
+          <!-- TAB 9: Business Profile & Cloud Services (components/admin/tab-profile.html) -->
+          <!-- TAB 9: BUSINESS PROFILE & CMS SETTINGS (Sections 40, 41) -->
+          <div id="adminTabProfile" style="display: none;">
+            <div style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); padding: 2rem; max-width: 800px; box-shadow: var(--shadow-sm);">
+              <h3 style="color: var(--text-main); font-size: 1.25rem; margin-bottom: 1.5rem;">Business Profile & Storefront Content</h3>
+              <form id="businessProfileForm" onsubmit="app.handleProfileSave(event)">
+                <div class="form-grid-2col">
+                  <div class="form-group full-width">
+                    <label class="form-label">Business Legal Name</label>
+                    <input type="text" id="profBusinessName" class="form-control" required>
+                  </div>
+                  <div class="form-group full-width">
+                    <label class="form-label">Tagline / Slogan</label>
+                    <input type="text" id="profTagline" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Contact Phone</label>
+                    <input type="text" id="profPhone" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Official Email</label>
+                    <input type="email" id="profEmail" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">WhatsApp Number</label>
+                    <input type="text" id="profWhatsapp" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">GSTIN Number</label>
+                    <input type="text" id="profGstin" class="form-control" required>
+                  </div>
+                  <div class="form-group full-width">
+                    <label class="form-label">Office & Warehouse Address</label>
+                    <input type="text" id="profAddress" class="form-control" required>
+                  </div>
+                  <div class="form-group full-width">
+                    <label class="form-label">Business Hours</label>
+                    <input type="text" id="profHours" class="form-control">
+                  </div>
+                  <div class="form-group full-width">
+                    <label class="form-label">About Us Overview</label>
+                    <textarea id="profAbout" class="form-control" rows="4"></textarea>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn-primary" style="margin-top: 1.5rem;">
+                  <i data-lucide="save" style="width: 16px; height: 16px;"></i>
+                  Save Business Profile
+                </button>
+              </form>
+            </div>
+
+            <!-- Admin Credentials & Security Card -->
+            <div style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); padding: 2rem; max-width: 800px; box-shadow: var(--shadow-sm); margin-top: 2rem;">
+              <h3 style="color: var(--text-main); font-size: 1.25rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                <i data-lucide="shield-check" style="color: #b45309; width: 22px; height: 22px;"></i>
+                Admin Login Credentials & Security
+              </h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+                Change your vendor portal login email or password anytime.
+              </p>
+
+              <form id="changePasswordForm" onsubmit="app.handleChangeAdminPassword(event)">
+                <div class="form-grid-2col">
+                  <div class="form-group">
+                    <label class="form-label">Store Admin Name</label>
+                    <input type="text" id="setAdminName" class="form-control" placeholder="Harsh" value="Harsh">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Admin Login Email</label>
+                    <input type="email" id="setAdminEmail" class="form-control" placeholder="admin@apexelectro.in" required>
+                  </div>
+                  <div class="form-group full-width">
+                    <label class="form-label">Current Password <span class="req">*</span></label>
+                    <input type="password" id="setCurrentPassword" class="form-control" placeholder="Enter current password" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">New Password <span class="req">*</span></label>
+                    <input type="password" id="setNewPassword" class="form-control" placeholder="Minimum 6 characters" required minlength="6">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Confirm New Password <span class="req">*</span></label>
+                    <input type="password" id="setConfirmPassword" class="form-control" placeholder="Re-enter new password" required minlength="6">
+                  </div>
+                </div>
+
+                <div style="display: flex; gap: 1rem; align-items: center; margin-top: 1.25rem;">
+                  <button type="submit" class="btn-primary">
+                    <i data-lucide="key-round" style="width: 16px; height: 16px;"></i>
+                    Update Login Credentials
+                  </button>
+                  <span id="pwdChangeSuccessHint" style="font-size: 0.85rem; color: #16a34a; font-weight: 700; display: none;">
+                    ✓ Credentials updated successfully!
+                  </span>
+                </div>
+              </form>
+            </div>
+
+            <!-- Cloud Infrastructure & Integrations Card -->
+            <div style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); padding: 2rem; max-width: 800px; box-shadow: var(--shadow-sm); margin-top: 2rem;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.25rem;">
+                <div>
+                  <h3 style="color: var(--text-main); font-size: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <i data-lucide="cloud-cog" style="color: #b45309; width: 22px; height: 22px;"></i>
+                    Cloud Infrastructure & Services
+                  </h3>
+                  <div style="font-size: 0.8rem; color: var(--text-dim); margin-top: 0.25rem;">
+                    Production stack: Supabase (PostgreSQL), Brevo (SMTP), GitHub, and Vercel.
+                  </div>
+                </div>
+                <button type="button" class="btn-xs-outline" onclick="app.checkCloudServicesHealth()">
+                  🔄 Test API Status
+                </button>
+              </div>
+
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem;">
+                <!-- 1. Supabase -->
+                <div style="background: #fdfaf5; border: 1px solid var(--border-medium); border-radius: var(--radius-md); padding: 1rem;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.4rem;">
+                    <strong style="color: var(--text-main); font-size: 0.85rem; display: flex; align-items: center; gap: 0.4rem;">
+                      <i data-lucide="database" style="color: #059669; width: 16px; height: 16px;"></i>
+                      Supabase Database
+                    </strong>
+                    <span class="status-pill" id="statusSupabasePill" style="background: #dcfce7; color: #166534; font-size: 0.65rem;">Configured</span>
+                  </div>
+                  <p style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; margin: 0;">
+                    PostgreSQL tables for Products, Variants, RFQ Inquiries, Quotations & Audit logs. Schema: <code>supabase/schema.sql</code>.
+                  </p>
+                </div>
+
+                <!-- 2. Brevo -->
+                <div style="background: #fdfaf5; border: 1px solid var(--border-medium); border-radius: var(--radius-md); padding: 1rem;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.4rem;">
+                    <strong style="color: var(--text-main); font-size: 0.85rem; display: flex; align-items: center; gap: 0.4rem;">
+                      <i data-lucide="mail" style="color: #0284c7; width: 16px; height: 16px;"></i>
+                      Brevo Transactional Mail
+                    </strong>
+                    <span class="status-pill" id="statusBrevoPill" style="background: #e0f2fe; color: #0369a1; font-size: 0.65rem;">REST API</span>
+                  </div>
+                  <p style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; margin: 0;">
+                    Dispatches RFQ tokens to customers & urgent purchase alerts to admin. Endpoint: <code>/api/inquiry</code>.
+                  </p>
+                </div>
+
+                <!-- 3. GitHub -->
+                <div style="background: #fdfaf5; border: 1px solid var(--border-medium); border-radius: var(--radius-md); padding: 1rem;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.4rem;">
+                    <strong style="color: var(--text-main); font-size: 0.85rem; display: flex; align-items: center; gap: 0.4rem;">
+                      <i data-lucide="git-branch" style="color: #7c3aed; width: 16px; height: 16px;"></i>
+                      GitHub Codebase
+                    </strong>
+                    <span class="status-pill" style="background: #ede9fe; color: #6d28d9; font-size: 0.65rem;">Git Ready</span>
+                  </div>
+                  <p style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; margin: 0;">
+                    Clean repository structure with <code>.gitignore</code>, <code>.env.example</code>, and Vercel serverless functions.
+                  </p>
+                </div>
+
+                <!-- 4. Vercel -->
+                <div style="background: #fdfaf5; border: 1px solid var(--border-medium); border-radius: var(--radius-md); padding: 1rem;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.4rem;">
+                    <strong style="color: var(--text-main); font-size: 0.85rem; display: flex; align-items: center; gap: 0.4rem;">
+                      <i data-lucide="zap" style="color: #d97706; width: 16px; height: 16px;"></i>
+                      Vercel Edge Deploy
+                    </strong>
+                    <span class="status-pill" style="background: #fef3c7; color: #92400e; font-size: 0.65rem;">Zero-Config</span>
+                  </div>
+                  <p style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; margin: 0;">
+                    Configured via <code>vercel.json</code>. Static edge hosting + automated Node.js serverless functions in <code>/api</code>.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Quick Verification Box -->
+              <div id="cloudHealthStatusBox" style="display: none; background: #ffffff; border: 1px solid var(--border-medium); border-radius: var(--radius-md); padding: 1rem; font-size: 0.8rem; margin-bottom: 1.5rem;">
+                <!-- Populated via JS -->
+              </div>
+
+              <!-- Interactive Brevo Setup & Test Form -->
+              <div style="background: #fdfaf5; border: 1px solid #e9decb; border-radius: var(--radius-lg); padding: 1.5rem; margin-top: 1rem;">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
+                  <h4 style="color: #b45309; font-size: 1rem; margin: 0; display: flex; align-items: center; gap: 0.5rem;">
+                    <i data-lucide="mail-check" style="width: 20px; height: 20px;"></i>
+                    Connect Brevo (Sendinblue) Live API Key
+                  </h4>
+                  <a href="https://app.brevo.com/settings/keys/api" target="_blank" rel="noopener noreferrer" style="font-size: 0.775rem; color: #0284c7; text-decoration: underline; font-weight: 700;">
+                    Get Brevo API Key ↗
+                  </a>
+                </div>
+                <p style="font-size: 0.8rem; color: #57534e; margin-bottom: 1.25rem; line-height: 1.5;">
+                  Apni Brevo key enter karein aur direct test email send karke live notification system verify karein:
+                </p>
+
+                <form id="brevoConfigForm" onsubmit="app.handleBrevoSaveAndTest(event)">
+                  <div class="form-grid-2col">
+                    <div class="form-group full-width">
+                      <label class="form-label">Brevo API Key (starts with <code>xkeysib-</code>) <span class="req">*</span></label>
+                      <input type="text" id="cfgBrevoKey" class="form-control" placeholder="xkeysib-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" required>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Verified Brevo Sender Email <span class="req">*</span></label>
+                      <input type="email" id="cfgBrevoSender" class="form-control" placeholder="e.g. yourname@gmail.com" required>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Admin Alert Email (Harsh) <span class="req">*</span></label>
+                      <input type="email" id="cfgAdminEmail" class="form-control" placeholder="e.g. yourname@gmail.com" required>
+                    </div>
+                  </div>
+
+                  <div style="display: flex; gap: 1rem; align-items: center; margin-top: 1.25rem; flex-wrap: wrap;">
+                    <button type="submit" class="btn-primary" id="btnSaveTestBrevo">
+                      <i data-lucide="send" style="width: 16px; height: 16px;"></i>
+                      Save & Send Live Test Email
+                    </button>
+                    <span id="brevoTestResultMsg" style="font-size: 0.825rem; font-weight: 700; display: none;"></span>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       6. ADMIN ACTION MODALS
+       =================================================================== -->
+  <!-- Admin Stock Adjustment Modal: components/modals/modal-admin-stock.html -->
+  <dialog class="custom-modal" id="adminStockModal">
+    <div class="modal-content-box">
+      <div class="modal-header">
+        <h3>
+          <i data-lucide="sliders" style="color: #b45309; width: 22px; height: 22px;"></i>
+          Adjust Inventory Stock (Audit Controlled)
+        </h3>
+        <button class="close-drawer-btn" onclick="app.closeModal('adminStockModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="stockAdjustmentForm" onsubmit="app.handleStockAdjustmentSubmit(event)">
+          <div class="form-grid-2col">
+            <div class="form-group full-width">
+              <label class="form-label" for="stkSelectVariant">Select Product Variant <span class="req">*</span></label>
+              <select id="stkSelectVariant" class="form-control" required onchange="app.handleStockVariantChange(this.value)">
+                <!-- Populated via JS -->
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Current Stock Level</label>
+              <input type="text" id="stkCurrentStockDisplay" class="form-control" readonly style="background: #f4eee5; color: var(--text-main); font-weight: 700;">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="stkAdjustmentType">Adjustment Action <span class="req">*</span></label>
+              <select id="stkAdjustmentType" class="form-control" required>
+                <option value="ADD">Add Stock (+ Incoming Goods / PO)</option>
+                <option value="REDUCE">Reduce Stock (- Dispatch / Shrinkage)</option>
+                <option value="SET">Set Exact Physical Count</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="stkQty">Quantity <span class="req">*</span></label>
+              <input type="number" id="stkQty" class="form-control" required min="1" placeholder="Quantity value">
+            </div>
+
+            <div class="form-group full-width">
+              <label class="form-label" for="stkReason">Reason for Adjustment <span class="req">*</span></label>
+              <input type="text" id="stkReason" class="form-control" required placeholder="e.g. New factory delivery LR-4421, physical audit correction, damaged in transit">
+            </div>
+          </div>
+
+          <div class="modal-footer" style="padding-left: 0; padding-right: 0; background: transparent;">
+            <button type="button" class="btn-secondary" onclick="app.closeModal('adminStockModal')">Cancel</button>
+            <button type="submit" class="btn-primary">Record Adjustment & Log Audit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Admin Product Create/Edit Modal: components/modals/modal-admin-product.html -->
+  <dialog class="custom-modal" id="adminProductModal" style="max-width: 880px;">
+    <div class="modal-content-box">
+      <div class="modal-header">
+        <h3 id="adminProductModalTitle">Create Electrical Product</h3>
+        <button class="close-drawer-btn" onclick="app.closeModal('adminProductModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="adminProductForm" onsubmit="app.handleProductSave(event)">
+          <input type="hidden" id="editProductId">
+
+          <h4 style="color: #b45309; font-size: 0.9rem; margin-bottom: 0.75rem;">1. Basic Identification</h4>
+          <div class="form-grid-2col" style="margin-bottom: 1.5rem;">
+            <div class="form-group full-width">
+              <label class="form-label">Product Name <span class="req">*</span></label>
+              <input type="text" id="pName" class="form-control" required placeholder="e.g. Polycab Super Flexible Multi-Strand Copper Wire">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Category <span class="req">*</span></label>
+              <select id="pCategory" class="form-control" required onchange="app.handleCategorySelectChange(this.value)">
+                <!-- Populated via JS -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Subcategory</label>
+              <select id="pSubcategory" class="form-control">
+                <!-- Populated via JS -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Brand <span class="req">*</span></label>
+              <select id="pBrand" class="form-control" required>
+                <!-- Populated via JS -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Base SKU Code <span class="req">*</span></label>
+              <input type="text" id="pSku" class="form-control" required placeholder="POL-CAB-FLX-1100V">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Model Number</label>
+              <input type="text" id="pModel" class="form-control" placeholder="Optima-FRLS-2026">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Manufacturer Part No. (MPN)</label>
+              <input type="text" id="pMpn" class="form-control" placeholder="PC-90M-FLX">
+            </div>
+          </div>
+
+          <h4 style="color: #b45309; font-size: 0.9rem; margin-bottom: 0.75rem;">2. Pricing & Unit Model (Section 11, 12, 13)</h4>
+          <div class="form-grid-2col" style="margin-bottom: 1.5rem;">
+            <div class="form-group">
+              <label class="form-label">Pricing Type</label>
+              <select id="pPriceType" class="form-control" onchange="app.handlePriceTypeChange(this.value)">
+                <option value="Per Unit">Price Per Unit (e.g. ₹/Meter)</option>
+                <option value="Fixed Price">Fixed Price (e.g. ₹/Piece)</option>
+                <option value="Price on Request">Price on Request (Show RFQ button)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Unit of Measure (UOM)</label>
+              <select id="pUnit" class="form-control">
+                <option value="Meter">Meter</option>
+                <option value="Piece">Piece</option>
+                <option value="Box">Box</option>
+                <option value="Roll">Roll</option>
+                <option value="Coil">Coil</option>
+                <option value="Pack">Pack</option>
+                <option value="Set">Set</option>
+                <option value="Bundle">Bundle</option>
+              </select>
+            </div>
+            <div class="form-group" id="pBasePriceGroup">
+              <label class="form-label">Base Unit Price (₹)</label>
+              <input type="number" id="pBasePrice" class="form-control" step="0.01" placeholder="e.g. 28.50">
+            </div>
+            <div class="form-group" style="justify-content: center;">
+              <label class="filter-checkbox-label" style="margin-top: 1.5rem;">
+                <input type="checkbox" id="pShowPrice" checked>
+                <span><strong>Show Price Publicly</strong> (If unchecked, displays "Price on Request")</span>
+              </label>
+            </div>
+          </div>
+
+          <h4 style="color: #b45309; font-size: 0.9rem; margin-bottom: 0.75rem;">3. Dynamic Specifications Builder (Section 15)</h4>
+          <div style="background: #fdfaf5; border: 1px solid var(--border-medium); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.5rem;">
+            <div style="font-size: 0.75rem; color: var(--text-dim); margin-bottom: 0.5rem;">Add any custom electrical technical parameters:</div>
+            <div id="dynamicSpecsList" style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0.75rem;">
+              <!-- Dynamic rows added via JS -->
+            </div>
+            <button type="button" class="btn-xs-outline" onclick="app.addDynamicSpecRow()">+ Add Specification Row</button>
+          </div>
+
+          <h4 style="color: #b45309; font-size: 0.9rem; margin-bottom: 0.75rem;">4. Product Variants (Section 14)</h4>
+          <div style="background: #fdfaf5; border: 1px solid var(--border-medium); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.5rem;">
+            <div style="font-size: 0.75rem; color: var(--text-dim); margin-bottom: 0.5rem;">Define size, poles, wattage variants with independent SKU, price, and stock:</div>
+            <div id="dynamicVariantsList" style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0.75rem;">
+              <!-- Dynamic variant rows added via JS -->
+            </div>
+            <button type="button" class="btn-xs-outline" onclick="app.addDynamicVariantRow()">+ Add Variant Row</button>
+          </div>
+
+          <h4 style="color: #b45309; font-size: 0.9rem; margin-bottom: 0.75rem;">5. Description & Media</h4>
+          <div class="form-grid-2col" style="margin-bottom: 1.5rem;">
+            <div class="form-group full-width">
+              <label class="form-label">Short Description</label>
+              <input type="text" id="pShortDesc" class="form-control" placeholder="1-sentence highlight for listing cards">
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label">Full Technical Description</label>
+              <textarea id="pFullDesc" class="form-control" rows="3" placeholder="Comprehensive specifications, safety compliance, and applications"></textarea>
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label">Primary Image URL</label>
+              <input type="url" id="pImage" class="form-control" placeholder="https://images.unsplash.com/...">
+            </div>
+          </div>
+
+          <div class="modal-footer" style="padding-left: 0; padding-right: 0; background: transparent;">
+            <button type="button" class="btn-secondary" onclick="app.closeModal('adminProductModal')">Cancel</button>
+            <button type="submit" class="btn-primary">Save Product to Database</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Admin Inquiry Detail Modal: components/modals/modal-admin-inquiry-detail.html -->
+  <dialog class="custom-modal" id="adminInquiryDetailModal" style="max-width: 850px;">
+    <div class="modal-content-box">
+      <div class="modal-header">
+        <h3 id="adminInquiryModalTitle">Inquiry Details</h3>
+        <button class="close-drawer-btn" onclick="app.closeModal('adminInquiryDetailModal')">&times;</button>
+      </div>
+      <div class="modal-body" id="adminInquiryModalBody">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ===================================================================
+       MODULAR JAVASCRIPT ARCHITECTURE
+       =================================================================== -->
+  <!-- 1. Master Seed Data -->
+  <script src="js/data.js"></script>
+
+  <!-- 2. Utilities -->
+  <script src="js/utils/formatters.js"></script>
+  <script src="js/utils/dom.js"></script>
+
+  <!-- 3. Central Application State Store -->
+  <script src="js/state.js"></script>
+
+  <!-- 4. Feature Modules -->
+  <script src="js/modules/auth.js"></script>
+  <script src="js/modules/catalog.js"></script>
+  <script src="js/modules/productDetail.js"></script>
+  <script src="js/modules/inquiryCart.js"></script>
+  <script src="js/modules/inquirySubmit.js"></script>
+  <script src="js/modules/quotation.js"></script>
+  <script src="js/modules/adminProducts.js"></script>
+  <script src="js/modules/adminInventory.js"></script>
+  <script src="js/modules/adminInquiries.js"></script>
+  <script src="js/modules/contact.js"></script>
+  <script src="js/modules/cloudServices.js"></script>
+
+  <!-- 5. Root Orchestrator -->
+  <script src="js/app.js"></script>
+</body>
+</html>
